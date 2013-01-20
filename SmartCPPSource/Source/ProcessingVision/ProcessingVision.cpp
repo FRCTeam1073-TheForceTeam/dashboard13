@@ -100,6 +100,7 @@ extern "C" PROCESSINGVISION_API Bitmap_Frame *ProcessFrame_RGB32(Bitmap_Frame *F
 
 extern "C" PROCESSINGVISION_API void Callback_SmartCppDashboard_Initialize(char *IPAddress)
 {
+	OutputDebugStringA("\n Callback SmartCppDashboard Initialize\n");
 	if (IPAddress)
 		g_UDP_Output=UDP_Client_Interface::GetNewInstance(IPAddress);
 	pipe = new PipeControl();

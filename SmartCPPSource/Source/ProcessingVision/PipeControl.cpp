@@ -22,7 +22,7 @@ DWORD WINAPI InstanceThread(LPVOID lpvParam)
 
 PipeControl::PipeControl(void)
 {
-
+	OutputDebugStringA("\nPipe Control Constructer Here!\n");
 
 	   BOOL   fConnected = FALSE; 
 	   DWORD  dwThreadId = 0; 
@@ -40,7 +40,8 @@ PipeControl::PipeControl(void)
  
 	   while (true) 
 	   { 
-		  _tprintf( TEXT("\nPipe Server: Main thread awaiting client connection on %s\n"), lpszPipename);
+
+		  OutputDebugStringA("\nPipe Server: Main thread awaiting client connection\n");
 		  hPipe = CreateNamedPipe( 
 			  lpszPipename,             // pipe name 
 			  PIPE_ACCESS_DUPLEX,       // read/write access 
@@ -55,20 +56,26 @@ PipeControl::PipeControl(void)
 
 		  if (hPipe == INVALID_HANDLE_VALUE) 
 		  {
-			  _tprintf(TEXT("CreateNamedPipe failed, GLE=%d.\n"), GetLastError()); 
-			  return;
+				char debug[64];
+				size_t sizeofdebug;
+				sizeofdebug = sprintf(debug,"\nCreateNamedPipe failed, GLE=%d.\n", GetLastError());
+				sizeofdebug += 1; //becasue were writing the null character
+				OutputDebugStringA(debug); 
+				return;
 		  }
  
 		  // Wait for the client to connect; if it succeeds, 
 		  // the function returns a nonzero value. If the function
 		  // returns zero, GetLastError returns ERROR_PIPE_CONNECTED. 
+		  OutputDebugStringA("Waiting for connect");
  
 		  fConnected = ConnectNamedPipe(hPipe, NULL) ? 
 			 TRUE : (GetLastError() == ERROR_PIPE_CONNECTED); 
  
 		  if (fConnected) 
 		  { 
-			 printf("Client connected, creating a processing thread.\n"); 
+			 OutputDebugStringA("\nClient connected, creating a processing thread.\n");
+
       
 			 // Create a thread for this client. 
 			 hThread = CreateThread( 
@@ -81,7 +88,7 @@ PipeControl::PipeControl(void)
 
 			 if (hThread == NULL) 
 			 {
-				_tprintf(TEXT("CreateThread failed, GLE=%d.\n"), GetLastError()); 
+				_tprintf(TEXT("\nCreateThread failed, GLE=%d.\n"), GetLastError()); 
 				return;
 			 }
 			 else CloseHandle(hThread); 
