@@ -1,4 +1,5 @@
 #pragma once
+#include "PipeControl.h"
 
 #ifdef PROCESSINGVISION_EXPORTS
 #define PROCESSINGVISION_API __declspec(dllexport)
@@ -30,6 +31,9 @@ extern "C"
 	/// if necessary.  The m1011 camera in h264 mode produces YUV 420p by default, and this gets converted to desired colorspace.
 	PROCESSINGVISION_API Bitmap_Frame *ProcessFrame_RGB32(Bitmap_Frame *Frame);
 
+	//
+	extern PipeControl *pipe;
+
 };
 
 // No C library depreciation warnings
@@ -45,6 +49,7 @@ class UDP_Client_Interface
 		static UDP_Client_Interface *GetNewInstance(char *servIP= "10.28.1.2",unsigned short echoServPort=1130);
 		virtual void operator() (double X,double Y)=0;
 		virtual ~UDP_Client_Interface() {}
+		
 	protected:
 		UDP_Client_Interface() {}
 };
