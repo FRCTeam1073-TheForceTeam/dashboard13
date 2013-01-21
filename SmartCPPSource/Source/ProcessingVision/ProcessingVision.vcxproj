@@ -37,7 +37,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../Bin/$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../SmartDashboard/</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../Bin/$(Configuration)\</OutDir>
@@ -93,6 +93,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
     </ClCompile>
     <ClCompile Include="NI_VisionProcessing.cpp" />
+    <ClCompile Include="PipeControl.cpp" />
     <ClCompile Include="ProcessingVision.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -101,6 +102,7 @@
     <ClCompile Include="UDP_Client.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PipeControl.h" />
     <ClInclude Include="ProcessingVision.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

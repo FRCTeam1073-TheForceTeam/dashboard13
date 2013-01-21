@@ -5,6 +5,13 @@
 
 UDP_Client_Interface *g_UDP_Output=NULL;
 
+extern "C" 
+{
+	//
+	PipeControl *pipe;
+
+};
+
 static void DebugOutput(const char *format, ... )
 {	char Temp[2048];
 	va_list marker;
@@ -54,9 +61,17 @@ extern "C" PROCESSINGVISION_API Bitmap_Frame *ProcessFrame_RGB32(Bitmap_Frame *F
 #ifndef __UseSampleExample__
 	double x_target, y_target;
 	Frame = NI_VisionProcessing(Frame, x_target, y_target);
-	//DebugOutput("X=%.2f,Y=%.2f\n",x_target,y_target);
+	DebugOutput("X=%.2f,Y=%.2f\n",x_target,y_target);
+
+	/*
+	Greg Commented out this
 	if (g_UDP_Output)
 		(*g_UDP_Output)(x_target,y_target);
+	*/
+
+	//
+
+	pipe->Write(x_target, y_target);
 #else
 
 	//Test... make a green box in the center of the frame
@@ -85,8 +100,10 @@ extern "C" PROCESSINGVISION_API Bitmap_Frame *ProcessFrame_RGB32(Bitmap_Frame *F
 
 extern "C" PROCESSINGVISION_API void Callback_SmartCppDashboard_Initialize(char *IPAddress)
 {
+	OutputDebugStringA("\n Callback SmartCppDashboard Initialize\n");
 	if (IPAddress)
 		g_UDP_Output=UDP_Client_Interface::GetNewInstance(IPAddress);
+	pipe = new PipeControl();
 }
 
 extern "C" PROCESSINGVISION_API void Callback_SmartCppDashboard_Shutdown()
