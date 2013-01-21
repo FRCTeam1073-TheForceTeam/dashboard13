@@ -1,0 +1,23 @@
+HKCR
+{
+	RoboRealm.API.1 = s 'API_Wrapper Class'
+	{
+		CLSID = s '{5379A53A-B254-483B-9DA0-AF6BA0970BE3}'
+	}
+	RoboRealm.API.1 = s 'API_Wrapper Class'
+	{
+		CLSID = s '{5379A53A-B254-483B-9DA0-AF6BA0970BE3}'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5379A53A-B254-483B-9DA0-AF6BA0970BE3} = s 'API_Wrapper Class'
+		{
+			ProgID = s 'RoboRealm.API.1'
+			VersionIndependentProgID = s 'RoboRealm.API.1'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'both'
+			}
+		}
+	}
+}

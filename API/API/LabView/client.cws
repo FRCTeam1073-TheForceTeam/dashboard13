@@ -1,0 +1,130 @@
+[Workspace Header]
+Version = 850
+Pathname = "/c/www/RoboRealm/API/LabView/client.cws"
+CVI Dir = "/c/program files/national instruments/cvi85"
+CVI Shared Dir = "/c/Program Files/National Instruments/Shared/CVI"
+CVI Pub Local Dir = "/C/Documents and Settings/All Users/Application Data/National Instruments/CVI85"
+CVI Pub Global Dir = "/C/Documents and Settings/All Users/Application Data/National Instruments/CVI"
+IVI Standard Root Dir = "/C/Program Files/IVI"
+VXIplug&play Framework Dir = "/C/VXIPNP/winnt"
+Number of Projects = 1
+Active Project = 1
+Project 0001 = "client.prj"
+Drag Bar Left = 230
+Window Top = 63
+Window Left = 25
+Window Bottom = 980
+Window Right = 1279
+Maximized = False
+Maximized Children = True
+Max Number Of Errors = 20
+Track Include File Dependencies = True
+Prompt For Missing Includes = True
+Stop On First Error File = False
+Bring Up Err Win For Warnings = True
+Show Build Dialog = False
+Save Changes Before Running = "Always"
+Hide Windows = False
+Global Hot Key = False
+Break At First Statement = False
+Sort Type = "File Name"
+Number of Opened Files = 5
+Window Confinement Region Enabled = True
+MainColumnWidth = 211
+FileDateColumnWidth = 70
+FileSizeColumnWidth = 70
+StatusColumnWidth = 70
+
+[Project Header 0001]
+Version = 850
+Don't Update DistKit = False
+Platform Code = 4
+Build Configuration = "Debug"
+Warn User If Debugging Release = 1
+Batch Build Release = False
+Batch Build Debug = False
+Force Rebuild = False
+
+[File 0001]
+Path = "/c/www/RoboRealm/API/LabView/client.c"
+File Type = "CSource"
+Disk Date = 3293111896
+In Projects = "1,"
+Window Top = 232
+Window Left = 114
+Window Z-Order = 1
+Source Window State = "1,280,280,280,8,41,8,0,0,123,0,286,0,286,0,63,224,0,277,14,349,639,1,0,"
+
+[File 0002]
+Path = "/c/www/RoboRealm/API/LabView/client.h"
+File Type = "Include"
+Disk Date = 3293034264
+In Projects = "1,"
+Window Top = 209
+Window Left = 102
+Window Z-Order = 3
+Source Window State = "1,17,17,17,9,24,24,0,0,74,0,0,0,0,0,25,0,0,11,38,349,639,1,0,"
+
+[File 0003]
+Path = "/c/www/RoboRealm/API/LabView/client.uir"
+File Type = "User Interface Resource"
+Disk Date = 3293034264
+In Projects = ""
+Window Top = 255
+Window Left = 126
+Window Height = 349
+Window Width = 687
+Window Z-Order = 5
+
+[File 0004]
+Path = "/c/www/RoboRealm/API/LabView/RR_API.c"
+File Type = "CSource"
+Disk Date = 3293111221
+In Projects = "1,"
+Window Top = 140
+Window Left = 66
+Window Z-Order = 2
+Source Window State = "1,1137,1139,1137,0,0,0,0,0,80,0,4,0,4,0,25,341,0,374,19,349,687,1,0,"
+
+[File 0005]
+Path = "/c/www/RoboRealm/API/LabView/RR_API.h"
+File Type = "Include"
+Disk Date = 3293054966
+In Projects = "1,"
+Window Top = 163
+Window Left = 78
+Window Z-Order = 4
+Source Window State = "1,47,48,47,0,0,0,0,0,80,0,0,0,0,0,25,11,0,33,23,349,687,1,0,"
+
+[Build Options 0001]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Execution Trace = "Disabled"
+Debugging Level = "Standard"
+Break On Library Errors = True
+Break On First Chance Exceptions = False
+Execution Target Address = "Local desktop computer"
+Execution Target Port = 0
+Execution Target Type = 0
+
+[SCC Options 0001]
+Use global settings = True
+SCC Provider = ""
+SCC Project = ""
+Local Path = ""
+Auxiliary Path = ""
+Perform Same Action For .h File As For .uir File = "Ask"
+Perform Same Action For .cds File As For .prj File = "Ask"
+Username = ""
+Comment = ""
+Use Default Username = False
+Use Default Comment = False
+Suppress CVI Error Messages = False
+Always show confirmation dialog = True
+
+[DLL Debugging Support 0001]
+External Process Path = ""
+
+[Command Line Args 0001]
+Command Line Args = ""
+

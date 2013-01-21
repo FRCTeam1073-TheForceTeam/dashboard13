@@ -1,0 +1,54 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Sample_API_App - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/Sample_API_App.res" /d "_DEBUG" /d "_AFXDLL" "C:\www\RoboRealm\API\C++\MS Visual Studio\Sample_API_App\Sample_API_App.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8DF.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\www\RoboRealm\API\C++\MS Visual Studio\Sample_API_App\PictureBox.cpp"
+"C:\www\RoboRealm\API\C++\MS Visual Studio\API\RR_API.cpp"
+"C:\www\RoboRealm\API\C++\MS Visual Studio\Sample_API_App\Sample_API_App.cpp"
+"C:\www\RoboRealm\API\C++\MS Visual Studio\Sample_API_App\Sample_API_AppDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8DF.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8E0.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Sample_API_App.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\www\RoboRealm\API\C++\MS Visual Studio\Sample_API_App\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8E0.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8E1.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Sample_API_App.pdb" /debug /machine:I386 /out:"Debug/Sample_API_App.exe" /pdbtype:sept 
+".\Debug\PictureBox.obj"
+".\Debug\RR_API.obj"
+".\Debug\Sample_API_App.obj"
+".\Debug\Sample_API_AppDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\Sample_API_App.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP8E1.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+PictureBox.cpp
+RR_API.cpp
+Sample_API_App.cpp
+Sample_API_AppDlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Sample_API_App.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

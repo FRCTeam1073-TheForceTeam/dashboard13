@@ -1,0 +1,72 @@
+// RR_COM_API.idl : IDL source for RR_COM_API.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RR_COM_API.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	
+	[
+		object,
+		uuid(B3B82392-E613-4711-B619-E04555549903),
+		dual,
+		helpstring("IAPI_Wrapper Interface"),
+		pointer_default(unique)
+	]
+	interface IAPI_Wrapper : IDispatch
+	{
+      [id(1), helpstring("method Connect")] HRESULT Connect([in] BSTR hostname, [out,retval] long *res);
+      [id(2), helpstring("method Disconnect")] HRESULT Disconnect([out,retval] long *res);
+      [id(3), helpstring("method GetDimension")] HRESULT GetDimension([out] VARIANT *width, [out] VARIANT *height, [out,retval] long *res);
+      [id(4), helpstring("method GetImage")] HRESULT GetImage([in] BSTR name, [out] VARIANT *image, [out] VARIANT *width, [out] VARIANT *height, [out,retval] long *res);
+      [id(5), helpstring("method SetImage")] HRESULT SetImage([in] BSTR name, [in] VARIANT *image, [in] VARIANT *width, [in] VARIANT *height);
+	  [id(6), helpstring("method GetVariable")] HRESULT GetVariable([in] BSTR name, [out, retval] BSTR *value);
+	  [id(7), helpstring("method SetVariable")] HRESULT SetVariable([in] BSTR name, [in] BSTR value, [out, retval] long *res);
+	  [id(8), helpstring("method DeleteVariable")] HRESULT DeleteVariable([in] BSTR name, [out, retval] long *res);
+	  [id(9), helpstring("method Execute")] HRESULT Execute([in] BSTR str, [out, retval] long *res);
+	  [id(10), helpstring("method LoadProgram")] HRESULT LoadProgram([in] BSTR filename, [out, retval] long *res);
+	  [id(11), helpstring("method LoadImage")] HRESULT LoadImage([in] BSTR name, [in] BSTR filename, [out, retval] long *res);
+	  [id(12), helpstring("method SaveImage")] HRESULT SaveImage([in] BSTR name, [in] BSTR filename, [out, retval] long *res);
+	  [id(13), helpstring("method SetCamera")] HRESULT SetCamera([in] BSTR name, [out, retval] long *res);
+	  [id(14), helpstring("method Run")] HRESULT Run([in] BSTR name, [out, retval] long *res);
+	  [id(15), helpstring("method WaitVariable")] HRESULT WaitVariable([in] BSTR name, [in] BSTR value, [in] long timeout, [out, retval] long *res);
+	  [id(16), helpstring("method WaitImage")] HRESULT WaitImage([out, retval] long *res);
+	  [id(17), helpstring("method LoadPPM")] HRESULT LoadPPM([in] BSTR filename, [in] VARIANT *image, [in] VARIANT *width, [in] VARIANT *height, [out, retval] long *res);
+	  [id(18), helpstring("method SavePPM")] HRESULT SavePPM([in] BSTR filename, [in] VARIANT *image, [in] VARIANT *width, [in] VARIANT *height, [out, retval] long *res);
+      [id(19), helpstring("method Open")] HRESULT Open([in] BSTR hostname, [in] VARIANT *port, [out,retval] long *res);
+      [id(20), helpstring("method Close")] HRESULT Close([out,retval] long *res);
+	  [id(21), helpstring("method GetVariables")] HRESULT GetVariables([in] BSTR name, [out, retval] VARIANT *value);
+	  [id(22), helpstring("method SetVariables")] HRESULT SetVariables([in] VARIANT *names, [in] VARIANT *values, [out,retval] long *res);
+	  [id(23), helpstring("method SetParameter")] HRESULT SetParameter([in] BSTR mod, [in] VARIANT *count, [in] BSTR name, [in] BSTR value, long *res);
+	  [id(24), helpstring("method GetParameter")] HRESULT GetParameter([in] BSTR mod, [in] VARIANT *count, [in] BSTR name, [out,retval] BSTR *res);
+	  [id(25), helpstring("method MinimizeWindow")] HRESULT MinimizeWindow([out,retval] long *res);
+	  [id(26), helpstring("method MaximizeWindow")] HRESULT MaximizeWindow([out,retval] long *res);
+	  [id(27), helpstring("method MoveWindow")] HRESULT MoveWindow([in] VARIANT *x, [in] VARIANT *y, [out,retval] long *res);
+	  [id(28), helpstring("method ResizeWindow")] HRESULT ResizeWindow([in] VARIANT *width, [in] VARIANT *height, [out,retval] long *res);
+	  [id(29), helpstring("method PositionWindow")] HRESULT PositionWindow([in] VARIANT *x, [in] VARIANT *y, [in] VARIANT *width, [in] VARIANT *height, [out,retval] long *res);
+	  [id(30), helpstring("method SaveProgram")] HRESULT SaveProgram([in] BSTR filename, [out, retval] long *res);
+	  [id(31), helpstring("method Pause")] HRESULT Pause([out, retval] long *res);
+	  [id(32), helpstring("method Resume")] HRESULT Resume([out, retval] long *res);
+	};
+
+[
+	uuid(2DDA153B-5603-4697-AAC9-2B6FDCF1DC64),
+	version(1.0),
+	helpstring("RR_COM_API 1.0 Type Library")
+]
+library RR_COM_APILib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(5379A53A-B254-483B-9DA0-AF6BA0970BE3),
+		helpstring("API_Wrapper Class")
+	]
+	coclass API_Wrapper
+	{
+		[default] interface IAPI_Wrapper;
+	};
+};

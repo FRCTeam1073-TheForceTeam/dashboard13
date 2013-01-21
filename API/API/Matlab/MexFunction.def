@@ -1,0 +1,7 @@
+; MexFunction.def : Declares the module parameters.
+
+LIBRARY      "RoboRealm.DLL"
+
+EXPORTS
+  mexFunction @5 PRIVATE
+  

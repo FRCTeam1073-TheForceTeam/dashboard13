@@ -1,0 +1,5 @@
+<head><version>1.8.16.0</version></head>
+<RGB_Filter>
+  <min_value>40</min_value>
+  <channel>1</channel>
+</RGB_Filter>
