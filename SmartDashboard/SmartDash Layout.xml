@@ -115,30 +115,20 @@
 		<width>71</width>
 		<height>43</height>
 	</widget>
-	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="RightEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+	<widget field="Navigation" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="RangeFinder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
 			<location x="6" y="16"/>
-			<height>98</height>
-			<width>250</width>
+			<height>20</height>
+			<width>77</width>
 		</widget>
-		<widget field="LeftEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="114"/>
-			<height>98</height>
-			<width>250</width>
+		<widget field="Altimiter" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="36"/>
+			<height>20</height>
+			<width>77</width>
 		</widget>
-		<widget field="DriveTrainGyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="6" y="212"/>
-			<height>150</height>
-			<width>250</width>
-		</widget>
-		<widget field="Gyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
-			<location x="6" y="362"/>
-			<height>150</height>
-			<width>250</width>
-		</widget>
-		<location x="456" y="15"/>
-		<width>262</width>
-		<height>519</height>
+		<location x="17" y="70"/>
+		<width>89</width>
+		<height>63</height>
 	</widget>
 	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="LeftServo" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
@@ -170,21 +160,30 @@
 		<width>305</width>
 		<height>253</height>
 	</widget>
-	<widget field="Navigation" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="RangeFinder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="RightEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
 			<location x="6" y="16"/>
-			<height>20</height>
-			<width>77</width>
+			<height>98</height>
+			<width>250</width>
 		</widget>
-		<widget field="Altimiter" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="36"/>
-			<height>20</height>
-			<width>77</width>
+		<widget field="LeftEncoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="114"/>
+			<height>98</height>
+			<width>250</width>
 		</widget>
-		<location x="17" y="70"/>
-		<width>89</width>
-		<height>63</height>
+		<widget field="DriveTrainGyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="212"/>
+			<height>150</height>
+			<width>250</width>
+		</widget>
+		<widget field="Gyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="362"/>
+			<height>150</height>
+			<width>250</width>
+		</widget>
+		<location x="456" y="15"/>
+		<width>262</width>
+		<height>519</height>
 	</widget>
 </live-window>
-	<hidden field="Autonomous Wait Time"/>
 </xml>
