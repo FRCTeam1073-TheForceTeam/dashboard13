@@ -18,6 +18,7 @@ public class CameraThread extends SwingWorker<BufferedImage, BufferedImage> {
     
     RR_API roboApi;
     BufferedImage savedImage = null;
+    int imageCount = 0;
     
 CameraThread()
 {
@@ -44,7 +45,7 @@ public BufferedImage getSavedImage()
         
         try { 
             image = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-            image.setRGB(0, 0, size.width, size.height, pixels, 0, size.width);     
+            image.setRGB(0, 0, size.width, size.height, pixels, 0, size.width);
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -58,7 +59,7 @@ public BufferedImage getSavedImage()
     protected BufferedImage doInBackground() throws Exception {
        
         BufferedImage image;
-        int imageCount = 0;
+        
         while(! isCancelled())
         {
             Thread.sleep(50);
@@ -66,14 +67,16 @@ public BufferedImage getSavedImage()
             image = this.displayImage();
             savedImage = image;
             imageCount++;
+
             System.out.println("Image Count:" + imageCount);
-            if (true)//imageCount % 20 == 0)
+            setProgress(imageCount % 99);
+            
+            if (imageCount % 10 == 0)
             {
-                
-                setProgress(imageCount);
                 String filename = String.format("C:/images/test %5d.bmp", imageCount);
                 ImageIO.write(image, "bmp", new File(filename));
             }
+            
         }
         
         return null;    

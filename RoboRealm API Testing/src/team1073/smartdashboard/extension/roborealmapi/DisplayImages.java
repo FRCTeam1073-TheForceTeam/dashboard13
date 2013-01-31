@@ -59,8 +59,12 @@ public class DisplayImages extends StaticWidget{
                         }
                         catch (Exception e)
                         {
-                            
+                            System.out.println("Exception: " + e.toString());
                         }
+                    }
+                    else
+                    {
+                        System.out.println("We made it to the else!  " + evt.getPropertyName());
                     }
                 }
                 
