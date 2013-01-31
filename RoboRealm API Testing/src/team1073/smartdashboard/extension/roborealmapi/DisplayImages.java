@@ -33,50 +33,33 @@ import javax.swing.JPanel;
 public class DisplayImages extends StaticWidget{
 
     CameraThread task = null;
+    BufferedImage image = null;
     
     
     @Override
     public void init() {
         
         task = new CameraThread();
-        this.setPreferredSize(new Dimension(100, 100));
+        this.setPreferredSize(new Dimension(640, 480));
 
         task.addPropertyChangeListener(new PropertyChangeListener()
             {
                 @Override
                 public void propertyChange(PropertyChangeEvent evt){
                     if ("progress".equals(evt.getPropertyName())){
-                        JPanel pic = null;
+                        
                         try
                         {
-                            BufferedImage image;
-                            Image otherImage;
                             image = task.getSavedImage();
-                            otherImage = (Image) image;
                             
                             if(image != null)
                             {
-                                //DOES NOT WORK - g is null
-                                /*pic = new JPanel();
-                                pic.setPreferredSize(new Dimension(640,480));
-                                JFrame frame = new JFrame();
-                                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                                frame.add(pic);
-                                frame.setVisible(true);
-                                Graphics g = pic.getGraphics();
-                                g.drawImage(otherImage, 0, 0, observy);
-                                frame.add(pic);*/
                                 repaint();
                             }
                         }
                         catch (Exception e)
                         {
-                            System.out.println("Image JLabel assignment exception\n");
-                        }
-
-                        if (pic != null)
-                        {
-                            add(pic);
+                            
                         }
                     }
                 }
@@ -97,10 +80,7 @@ public class DisplayImages extends StaticWidget{
     @Override
     public void paintComponent(Graphics g)
     {
-        BufferedImage image;
-        image = task.getSavedImage();
         g.setColor(Color.ORANGE);
-        //g.fillRect(0, 0, getBounds().width, getBounds().height);
         g.drawImage(image, 0, 0, null);
     }
 }
