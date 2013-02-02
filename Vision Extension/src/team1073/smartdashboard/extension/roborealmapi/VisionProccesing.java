@@ -14,7 +14,7 @@ public class VisionProccesing {
     
     BufferedImage image;
     RR_API api;
-    float[] variables;
+    double[] variables;
     
     VisionProccesing()
     {
@@ -32,14 +32,14 @@ public class VisionProccesing {
         return image;
     }
     
-    private float[] getRRVariables()
+    private double[] getRRVariables()
     {
         //only call from proccessImage function please
-        float[] values = new float[8];
+        double[] values = new double[8];
         
-        String variable = api.getVariable("nameOfYourVariableHere");
+        String variable = api.getVariable("testVariable");
         System.out.println("RoboRealm returned variable :" + variable);
-        values[0] = Float.parseFloat(variable);
+        values[0] = Double.parseDouble(variable);
         //add more getVariable calls for more variables
         
         return values;

@@ -40,7 +40,7 @@ public BufferedImage getSavedImage()
     public BufferedImage displayImage() {
         //one byte for each r, g, or b value
         Dimension size = new Dimension(640, 480);
-        int[] pixels = roboApi.getImage("source");
+        int[] pixels = roboApi.getImage("processed");
         BufferedImage image = null;
         
         try { 
@@ -82,6 +82,9 @@ public BufferedImage getSavedImage()
         return null;    
     }
     
-    
+    public RR_API getApi()
+    {
+        return roboApi;
+    }
     
 }

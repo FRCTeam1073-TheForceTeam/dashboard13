@@ -24,6 +24,7 @@ public class DisplayImages extends StaticWidget{
     CameraThread task = null;
     BufferedImage image = null;
     VisionProccesing vision = null;
+    RR_API api = null;
     
     
     @Override
@@ -32,6 +33,7 @@ public class DisplayImages extends StaticWidget{
         task = new CameraThread();
         vision = new VisionProccesing();
         this.setPreferredSize(new Dimension(640, 480));
+        api = task.getApi();
 
         task.addPropertyChangeListener(new PropertyChangeListener()
             {
@@ -42,9 +44,7 @@ public class DisplayImages extends StaticWidget{
                         try
                         {
                             image = task.getSavedImage();
-                            //do call to vision processing here
-                            //then repaint with new overlays 
-                            //save returned image from vision to image variable
+                            image = vision.proccessImage(image, api);//proccesing
                             
                             if(image != null)
                             {
