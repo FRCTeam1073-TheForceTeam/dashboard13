@@ -14,7 +14,7 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 
-public class DiscCounter extends StaticWidget{
+public class DiscCounter extends Widget{
     public DiscCounter () { count = 0;}
     private int count;
     public final IntegerProperty newVal = new IntegerProperty(this, "Disk Number", 0);

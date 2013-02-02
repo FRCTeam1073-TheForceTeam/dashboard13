@@ -15,7 +15,7 @@ import java.awt.Canvas;
 import javax.swing.JFrame;
 
 
-public class CameraBorder extends StaticWidget{
+public class CameraBorder extends Widget{
     private boolean isRed;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Red", false);
     
