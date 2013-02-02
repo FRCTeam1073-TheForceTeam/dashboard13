@@ -10,20 +10,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
-import java.awt.image.MemoryImageSource;
-import java.awt.Image;
-import java.awt.image.ImageObserver;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 
 
 /**
@@ -34,12 +23,14 @@ public class DisplayImages extends StaticWidget{
 
     CameraThread task = null;
     BufferedImage image = null;
+    VisionProccesing vision = null;
     
     
     @Override
     public void init() {
         
         task = new CameraThread();
+        vision = new VisionProccesing();
         this.setPreferredSize(new Dimension(640, 480));
 
         task.addPropertyChangeListener(new PropertyChangeListener()
@@ -51,6 +42,9 @@ public class DisplayImages extends StaticWidget{
                         try
                         {
                             image = task.getSavedImage();
+                            //do call to vision processing here
+                            //then repaint with new overlays 
+                            //save returned image from vision to image variable
                             
                             if(image != null)
                             {
