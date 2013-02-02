@@ -161,6 +161,13 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+<<<<<<< HEAD
 /SmartDashboardExtensions/dashboard13/nbproject/private/
 /Vision Extension/nbproject/private/
 /RoboRealm API Testing/nbproject/private/
+=======
+/Widgets/SmartDashboardExtensions/nbproject/private/
+/SmartDashboard Extensions/SmartDashboard Extensions/nbproject/private/
+/SmartDashboardExtensions/SmartDashboard Extensions/nbproject/private/
+/SmartDashboardExtensions/SmartDashboardExtensions/nbproject/private/
+>>>>>>> Added DiscCounter and CameraBorder widgets.
