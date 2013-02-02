@@ -162,3 +162,5 @@ pip-log.txt
 # Mac crap
 .DS_Store
 /SmartDashboardExtensions/dashboard13/nbproject/private/
+/Vision Extension/nbproject/private/
+/RoboRealm API Testing/nbproject/private/
