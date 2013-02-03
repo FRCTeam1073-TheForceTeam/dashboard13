@@ -22,8 +22,9 @@ public class VisionProccesing {
     
     VisionProccesing()
     {
-        NetworkTable.setTeam(1073);
-        NetworkTable.setIPAddress("10.10.73.2");
+        //NetworkTable.setTeam(1073);
+        //NetworkTable.setClientMode();
+        //NetworkTable.setIPAddress("10.10.73.2");
         visionTable = NetworkTable.getTable("tracking");
         
     }
@@ -55,15 +56,22 @@ public class VisionProccesing {
     
     private void getCurrentValues()
     {
+        System.out.println("Is Connected: " + visionTable.isConnected());
+        System.out.println("Is Server Mode: " + visionTable.isServer());
+        
         try
         {
             currentAngle = visionTable.getNumber("currentAngle");
             currentSpeed = visionTable.getNumber("currentSpeed");
         }
-        catch(Exception e){System.out.println("Exception in Network Table getNumber" + e);}
+        catch(Exception e)
+        {
+            System.out.println("Caught Exception in Network Table getNumber" + e);
+        }
         
         System.out.println("currentAngle: " + currentAngle + "   currentSpeed: " + currentSpeed);
-        System.out.println("Is Connected: " + visionTable.isConnected());
+        
+                
     }
             
     private void sendCalcValues(double angle, double distance)

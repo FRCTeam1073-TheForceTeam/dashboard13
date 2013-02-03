@@ -34,6 +34,7 @@ public class DisplayImages extends StaticWidget{
         vision = new VisionProccesing();
         this.setPreferredSize(new Dimension(640, 480));
         api = task.getApi();
+        
 
         task.addPropertyChangeListener(new PropertyChangeListener()
             {
