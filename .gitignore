@@ -173,3 +173,5 @@ pip-log.txt
 >>>>>>> Added DiscCounter and CameraBorder widgets.
 /SmartDashboard/extensions/
 /diagnostics extension/nbproject/private/
+/WidgetSource/AimStatus/nbproject/private/
+/WidgetSource/DiagnosticsWidget/nbproject/private/
