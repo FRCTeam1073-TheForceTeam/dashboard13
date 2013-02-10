@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
+import edu.wpi.first.smartdashboard.gui.StaticWidget;
 
 public class DiscCount extends Widget{
     

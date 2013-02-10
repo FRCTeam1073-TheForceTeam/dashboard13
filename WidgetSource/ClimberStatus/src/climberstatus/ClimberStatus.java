@@ -1,4 +1,4 @@
-package team1073.smartdashboard.extension.cameraborder;
+package ClimberStatus;
 
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.gui.Widget;
@@ -9,37 +9,46 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Canvas;
+import java.awt.Font;
 import javax.swing.JFrame;
 
-public class CameraBorder extends StaticWidget{
-    private boolean isOldImage;
-    public final BooleanProperty newVal = new BooleanProperty(this, "Is Old Image", false);
+public class ClimberStatus extends StaticWidget{
+    private boolean isClimberEngaged;
+    public final BooleanProperty newVal = new BooleanProperty(this, "Is Climber Engaged", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
     
-    public CameraBorder () {isOldImage = false;}
+    public ClimberStatus () {isClimberEngaged = false;}
     
     @Override
     protected void paintComponent (Graphics graphics) {
         
-        if(!isOldImage) {graphics.setColor(Color.BLACK);}
-        else {graphics.setColor(Color.RED);}
+        if(!isClimberEngaged) {
+            graphics.setColor(Color.BLACK);
+            graphics.fillRect(10, 10, 200, 75);
+        }
+        else {
+            graphics.setColor(Color.GREEN);     
+            graphics.fillRect(10, 10, 200, 75);
+            graphics.setColor(Color.BLACK);
+            graphics.drawString("CLIMBER ENGAGED", 65, 45);
+        }
         
-        graphics.fillRect(10, 10, 680, 520);
+
     }
 
     public void setValue(Object o) {
-       boolean b = isOldImage;
+       boolean b = isClimberEngaged;
        
        try{b = (Boolean) o;}
        catch(Exception e){}
        
-       isOldImage = b;
+       isClimberEngaged = b;
        repaint();
     }
 
     @Override
     public void init() {
-       isOldImage = false;
+       isClimberEngaged = false;
        setPreferredSize(new Dimension(50,50));
     }
 

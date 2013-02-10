@@ -9,15 +9,17 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.IntegerProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 /**
  *
  * @author Kate
  */
-public class AngleDisplay extends Widget{
+public class AngleDisplay extends StaticWidget{
+    
     
     //angles to display in degrees and radians
     private int angle;
@@ -45,10 +47,12 @@ public class AngleDisplay extends Widget{
      
     @Override
     protected void paintComponent (Graphics graphics) {
+        Graphics2D g = (Graphics2D) graphics;
         //we only want this to display angles between 0 and 90 degrees
         if(angle <= 75 && angle >= 0) {
             x2 = 75 + (int)(75*Math.cos(angleRad));
             y2 = 125 - (int)(75*(Math.sin(angleRad)));
+            g.setStroke(new BasicStroke (5.0f));
             graphics.setColor(Color.BLACK);
             graphics.drawArc(0, 50, 150, 150, 0, angle);
             graphics.drawLine(75, 125, 150, 125); //baseline from center to 0 rad
