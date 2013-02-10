@@ -10,8 +10,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
+import edu.wpi.first.smartdashboard.gui.StaticWidget;
 
-public class DiscCount extends Widget{
+public class DiscCount extends StaticWidget{
     
     private int count;
     public final IntegerProperty newVal = new IntegerProperty(this, "Disc Number", 0);
