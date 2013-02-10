@@ -11,7 +11,7 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 
-public class CameraBorder extends Widget{
+public class CameraBorder extends StaticWidget{
     private boolean isRed;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Red", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
