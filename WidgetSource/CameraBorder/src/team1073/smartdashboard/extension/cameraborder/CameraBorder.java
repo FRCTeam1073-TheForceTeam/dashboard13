@@ -12,34 +12,34 @@ import java.awt.Canvas;
 import javax.swing.JFrame;
 
 public class CameraBorder extends StaticWidget{
-    private boolean isRed;
-    public final BooleanProperty newVal = new BooleanProperty(this, "Is Red", false);
+    private boolean isOldImage;
+    public final BooleanProperty newVal = new BooleanProperty(this, "Is Old Image", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
     
-    public CameraBorder () {isRed = false;}
+    public CameraBorder () {isOldImage = false;}
     
     @Override
     protected void paintComponent (Graphics graphics) {
         
-        if(!isRed) {graphics.setColor(Color.BLACK);}
+        if(!isOldImage) {graphics.setColor(Color.BLACK);}
         else {graphics.setColor(Color.RED);}
         
         graphics.fillRect(10, 10, 680, 520);
     }
 
     public void setValue(Object o) {
-       boolean b = isRed;
+       boolean b = isOldImage;
        
        try{b = (Boolean) o;}
        catch(Exception e){}
        
-       isRed = b;
+       isOldImage = b;
        repaint();
     }
 
     @Override
     public void init() {
-       isRed = false;
+       isOldImage = false;
        setPreferredSize(new Dimension(50,50));
     }
 
