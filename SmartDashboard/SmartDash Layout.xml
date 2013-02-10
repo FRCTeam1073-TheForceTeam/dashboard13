@@ -1,0 +1,174 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="team1073.smartdashboard.extension.roborealmapi.DiagnosticsWidget">
+		<location x="546" y="412"/>
+	</static-widget>
+	<widget field="Drive Train Gyro Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="231"/>
+	</widget>
+	<widget field="Shooter Elevation Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="210"/>
+	</widget>
+	<widget field="Back Shooter Jag Temperature" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="189"/>
+	</widget>
+	<widget field="Back Shooter Jag Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="168"/>
+	</widget>
+	<widget field="Back Shooter Jag Bus Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="265" y="147"/>
+	</widget>
+	<widget field="Back Shooter Jag Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="265" y="126"/>
+	</widget>
+	<widget field="Front Shooter Jag Temperature" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="105"/>
+	</widget>
+	<widget field="Front Shooter Jag Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="84"/>
+	</widget>
+	<widget field="Front Shooter Jag Bus Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="63"/>
+	</widget>
+	<widget field="Front Shooter Jag Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="42"/>
+	</widget>
+	<widget field="Shooter Elevation Jag Temperature" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="472" y="21"/>
+	</widget>
+	<widget field="Shooter Elevation Jag Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="21"/>
+	</widget>
+	<widget field="Shooter Elevation Jag Bus Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="472" y="0"/>
+	</widget>
+	<widget field="Shooter Elevation Jag Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="0"/>
+	</widget>
+	<widget field="Disc Count" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="102" y="0"/>
+	</widget>
+	<widget field="Shooter Back Current Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="649"/>
+	</widget>
+	<widget field="Shooter Front Current Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="628"/>
+	</widget>
+	<widget field="Shooter Back Speed Set" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="607"/>
+	</widget>
+	<widget field="Shooter Front Speed Set" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="59" y="145"/>
+	</widget>
+	<widget field="Shooter D" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="586"/>
+	</widget>
+	<widget field="Shooter I" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="565"/>
+	</widget>
+	<widget field="Shooter P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="544"/>
+	</widget>
+	<widget field="EngageClimber" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="510"/>
+	</widget>
+	<widget field="ClimberDrive" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="476"/>
+	</widget>
+	<widget field="SetChainsawPosition3" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="59" y="442"/>
+	</widget>
+	<widget field="PullShooterData" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="408"/>
+	</widget>
+	<widget field="SetChainsawPosition2" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="59" y="374"/>
+	</widget>
+	<widget field="SetChainsawPosition1" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="59" y="340"/>
+	</widget>
+	<widget field="SetCubicDrive" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="306"/>
+	</widget>
+	<widget field="TurboDriveOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="272"/>
+	</widget>
+	<widget field="ClimberOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="238"/>
+	</widget>
+	<widget field="ClimberOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="204"/>
+	</widget>
+	<widget field="ShooterOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="170"/>
+	</widget>
+	<widget field="ShooterOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="55"/>
+	</widget>
+	<widget field="CollectorSendDiscCount" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="21"/>
+	</widget>
+	<static-widget class="team1073.smartdashboard.extension.roborealmapi.DiagnosticsWidget">
+		<location x="0" y="145"/>
+	</static-widget>
+	<widget field="Autonomous Wait Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="124"/>
+	</widget>
+	<widget field="Autonomous Turns" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="90"/>
+	</widget>
+	<widget field="Autonomous Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="279" y="283"/>
+	</widget>
+</dashboard>
+<live-window>
+	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<location x="0" y="314"/>
+	</widget>
+	<widget field="Collector" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Motor" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="16"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="DiscCountSensor" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="62"/>
+			<height>20</height>
+			<width>293</width>
+		</widget>
+		<widget field="DiscUpsideDownSensor" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="82"/>
+			<height>20</height>
+			<width>293</width>
+		</widget>
+		<location x="0" y="116"/>
+		<width>305</width>
+		<height>109</height>
+	</widget>
+	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Gyro" type="Table" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="16"/>
+			<height>150</height>
+			<width>250</width>
+		</widget>
+		<location x="0" y="140"/>
+		<width>262</width>
+		<height>173</height>
+	</widget>
+	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="LeftClimbWindowTalon" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="16"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="RightClimbWindowTalon" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="62"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>305</width>
+		<height>115</height>
+	</widget>
+</live-window>
+</xml>
