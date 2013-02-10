@@ -1,4 +1,4 @@
-package ClimberStatus;
+package team1073.smartdashboard.extension.climberstatus;
 
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.gui.Widget;
