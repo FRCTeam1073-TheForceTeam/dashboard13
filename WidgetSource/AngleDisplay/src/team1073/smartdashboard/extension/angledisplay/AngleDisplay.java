@@ -12,8 +12,10 @@ import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import javax.swing.JTextArea;
 /**
  *
  * @author Kate
@@ -52,7 +54,9 @@ public class AngleDisplay extends StaticWidget{
         if(angle <= 75 && angle >= 0) {
             x2 = 75 + (int)(75*Math.cos(angleRad));
             y2 = 125 - (int)(75*(Math.sin(angleRad)));
-            g.setStroke(new BasicStroke (5.0f));
+            g.setStroke(new BasicStroke (2.0f));
+            graphics.setColor(Color.GREEN);
+            graphics.fillArc(0, 50, 150, 150, 0, angle);
             graphics.setColor(Color.BLACK);
             graphics.drawArc(0, 50, 150, 150, 0, angle);
             graphics.drawLine(75, 125, 150, 125); //baseline from center to 0 rad
@@ -61,8 +65,12 @@ public class AngleDisplay extends StaticWidget{
         else {
             graphics.setColor(Color.RED);
             graphics.fillArc(0,50,150,150,0,90);
+            Font font = new Font("Arial", Font.BOLD, 14);
+            graphics.setFont(font);
             graphics.drawString("INVALID ANGLE", 75, 160);
         }
+        Font font = new Font("Arial", Font.BOLD, 14);
+        graphics.setFont(font);
         graphics.drawString("Angle: " + Integer.toString(angle), 75, 140);
     }
     
