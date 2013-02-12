@@ -176,3 +176,5 @@ pip-log.txt
 /diagnostics extension/dir/
 /WidgetSource/DiagnosticsWidget/nbproject/private/
 /WidgetSource/speedDisplay/nbproject/private/
+/WidgetSource/Speedometer/nbproject/private/
+/WidgetSource/DataProcessing/nbproject/private/
