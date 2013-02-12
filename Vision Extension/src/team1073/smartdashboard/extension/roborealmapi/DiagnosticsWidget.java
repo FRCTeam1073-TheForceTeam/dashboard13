@@ -5,21 +5,20 @@
 package team1073.smartdashboard.extension.roborealmapi;
 
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
+import edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
@@ -37,7 +36,7 @@ public class DiagnosticsWidget extends StaticWidget{
     Charset encoding = StandardCharsets.UTF_8;
     PrintWriter writer;
     static DiagnosticsWidget instance;
-    JLabel label1;
+    SingleNumberDisplay label1;
     ArrayList<AbstractMap.SimpleEntry<String, Object>> values;
     int numberOfValues;
     boolean isFirstRow = true;
@@ -48,7 +47,10 @@ public class DiagnosticsWidget extends StaticWidget{
         instance = this;
         values = new ArrayList<AbstractMap.SimpleEntry<String, Object>>();
         System.out.println("HIIIII MaTT");
-        label1 = new JLabel("SCHANAD");
+        label1 = new SingleNumberDisplay();
+        label1.setName("Match Timer");
+        label1.setResizable(true);
+        this.setPreferredSize(new Dimension(128, 64));
         diagnosticsTable = NetworkTable.getTable("diagnosticsTable");
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
@@ -66,6 +68,10 @@ public class DiagnosticsWidget extends StaticWidget{
             public void valueChanged(ITable itable, String string, Object o, boolean bln) {
                 instance.writeValueToFile(string, o);
                 //System.out.println(string + ":  " + o.toString());
+                if (string.equals("Match Timer"))
+                {
+                    label1.setValue(o);
+                }
             }
         });
         
