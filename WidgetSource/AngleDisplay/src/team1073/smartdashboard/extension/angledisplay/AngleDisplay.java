@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
  *
  * @author Kate
  */
-public class AngleDisplay extends StaticWidget{
+public class AngleDisplay extends Widget{
     
     
     //angles to display in degrees and radians
