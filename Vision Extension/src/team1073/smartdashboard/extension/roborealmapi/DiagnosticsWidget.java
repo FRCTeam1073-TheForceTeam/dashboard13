@@ -44,6 +44,9 @@ public class DiagnosticsWidget extends StaticWidget{
     String lastKey = "";
     Widget.UneditableNumberField label2;
     Widget.UneditableNumberField label3;
+    Double labelText1;
+    Double labelText2;
+    Double labelText3;
     
     @Override
     public void init() {
@@ -54,6 +57,9 @@ public class DiagnosticsWidget extends StaticWidget{
         label1.setName("Match Timer");
         label2 = new Widget.UneditableNumberField();
         label3 = new Widget.UneditableNumberField();
+        label1.setBindableValue(labelText1);
+        label2.setBindableValue(labelText2);
+        label3.setBindableValue(labelText3);
         this.setPreferredSize(new Dimension(128, 64));
         diagnosticsTable = NetworkTable.getTable("diagnosticsTable");
         Calendar cal = Calendar.getInstance();
@@ -74,13 +80,13 @@ public class DiagnosticsWidget extends StaticWidget{
                 //System.out.println(string + ":  " + o.toString());
                 if (string.equals("Match Timer"))
                 {
-                    label1.setBindableValue((Double)o);
+                    labelText1 = (Double)o;
                 }
                 else if (string.equals("Left Climber Encoder")){
-                    label2.setBindableValue((Double) o);
+                    labelText2 = (Double)o;
                 }
                 else if (string.equals("Right Climber Encoder")){
-                    label3.setBindableValue((Double) o);
+                    labelText3 = (Double)o;
                 }
             }
         });
