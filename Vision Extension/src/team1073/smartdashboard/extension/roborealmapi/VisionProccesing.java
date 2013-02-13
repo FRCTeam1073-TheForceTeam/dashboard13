@@ -61,8 +61,8 @@ public class VisionProccesing {
         
         try
         {
-            currentAngle = visionTable.getNumber("currentAngle");
-            currentSpeed = visionTable.getNumber("currentSpeed");
+            currentAngle = (float) visionTable.getNumber("currentAngle");
+            currentSpeed = (float) visionTable.getNumber("currentSpeed");
         }
         catch(Exception e)
         {
