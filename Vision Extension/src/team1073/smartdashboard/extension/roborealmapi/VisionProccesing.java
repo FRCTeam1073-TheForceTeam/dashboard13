@@ -17,8 +17,8 @@ public class VisionProccesing {
     RR_API api;
     double[] variables;
     NetworkTable visionTable;
-    double currentAngle;
-    double currentSpeed;
+    float currentAngle;
+    float currentSpeed;
     
     VisionProccesing()
     {

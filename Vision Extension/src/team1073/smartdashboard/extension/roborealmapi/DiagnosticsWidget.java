@@ -5,6 +5,7 @@
 package team1073.smartdashboard.extension.roborealmapi;
 
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
+import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -36,7 +37,7 @@ public class DiagnosticsWidget extends StaticWidget{
     Charset encoding = StandardCharsets.UTF_8;
     PrintWriter writer;
     static DiagnosticsWidget instance;
-    SingleNumberDisplay label1;
+    Widget.UneditableNumberField label1;
     ArrayList<AbstractMap.SimpleEntry<String, Object>> values;
     int numberOfValues;
     boolean isFirstRow = true;
@@ -47,9 +48,8 @@ public class DiagnosticsWidget extends StaticWidget{
         instance = this;
         values = new ArrayList<AbstractMap.SimpleEntry<String, Object>>();
         System.out.println("HIIIII MaTT");
-        label1 = new SingleNumberDisplay();
+        label1 = new Widget.UneditableNumberField();
         label1.setName("Match Timer");
-        label1.setResizable(true);
         this.setPreferredSize(new Dimension(128, 64));
         diagnosticsTable = NetworkTable.getTable("diagnosticsTable");
         Calendar cal = Calendar.getInstance();
@@ -70,7 +70,7 @@ public class DiagnosticsWidget extends StaticWidget{
                 //System.out.println(string + ":  " + o.toString());
                 if (string.equals("Match Timer"))
                 {
-                    label1.setValue(o);
+                    label1.setBindableValue((Double)o);
                 }
             }
         });
