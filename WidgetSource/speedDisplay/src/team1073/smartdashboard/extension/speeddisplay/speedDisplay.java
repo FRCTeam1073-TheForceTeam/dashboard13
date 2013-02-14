@@ -52,7 +52,7 @@ public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
     g.setColor(Color.BLACK);
     g.drawRect(0, 0, 64 - 1, 200 - 1);
     
-    g.drawString("Speed: " + Integer.toString((int)actualValue), 0, 215);
+    g.drawString("Speed: " + Integer.toString(Math.abs((int)actualValue)), 0, 21);
     }
    
 }

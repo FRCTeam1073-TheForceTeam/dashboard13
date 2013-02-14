@@ -15,7 +15,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JTextArea;
 /**
  *
  * @author Kate
@@ -77,8 +76,10 @@ public class AngleDisplay extends Widget{
     public void setValue(Object o) {
        int d = angle;
        
-       try{d = ((Number)o).intValue();;}
-       catch(Exception e){}
+       try{d = ((Number)o).intValue();}
+       catch(Exception e){
+       System.err.println("AngleDisplay setValue exception "+ e);
+       }
        
        angle = d;
        angleRad = (Math.PI * angle)/180;

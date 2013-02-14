@@ -42,12 +42,15 @@ public class ClimberStatus extends StaticWidget{
         
 
     }
-
+    
     public void setValue(Object o) {
        boolean b = isClimberEngaged;
        
        try{b = (Boolean) o;}
-       catch(Exception e){}
+       catch(Exception e){
+       
+       System.out.println("ClimberStatus setValue exception " + e);
+       }
        
        isClimberEngaged = b;
        repaint();
