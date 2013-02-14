@@ -11,17 +11,30 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
+import edu.wpi.first.smartdashboard.properties.StringProperty;
 
 public class DiscCount extends StaticWidget{
     
     private int count;
-    public final IntegerProperty newVal = new IntegerProperty(this, "Disc Number", 0);
-    public static final DataType[] TYPES = {DataType.NUMBER};
+    private boolean isBottomFlipped;
+    private String combinedData;
     
-    public DiscCount () { count = 0;}
+    //takes a string in format [discNum]#[isBottomFlipped], ex. 0#0 for no discs, bottom not flipped
+    public final StringProperty newVal = new StringProperty(this, "Disc Counter String", "0,0");
+    public static final DataType[] TYPES = {DataType.STRING};
+    
+    public DiscCount () { 
+        count = 0;
+        isBottomFlipped = false;
+        combinedData = count + "," + (isBottomFlipped ? 1 : 0);
+    }
     
     @Override
     protected void paintComponent (Graphics graphics) {
+        String[] strings = combinedData.split(",");
+        count = Integer.parseInt(strings[0]);
+        isBottomFlipped = Integer.parseInt(strings[1]) == 1 ? true : false;
+        
         graphics.setColor (Color.BLACK);
         graphics.fillRect(60,80,330,100);
 
@@ -32,18 +45,21 @@ public class DiscCount extends StaticWidget{
             else
                 graphics.setColor(Color.WHITE);
             graphics.fillOval(i*80+70, 95, 70, 70);
+            if(isBottomFlipped) {
+                graphics.setColor(Color.GRAY);
+                graphics.fillOval(75, 100, 60, 60);
+            }
         }
         graphics.setColor(Color.BLACK);
-        //graphics.drawString("Team 1073 Disc Counter", 160, 50);
     }
     
     public void setValue(Object o) {
-        int i = count;
+        String s = combinedData;
+        try{s = (String)o;}
+        catch(Exception e){}
         
-        try{i = ((Number)o).intValue();}
-        catch(Exception e) {}
-        
-        count = i >= 0 && i <= 4 ? i : count;
+        combinedData = s;
+
         repaint();
     }
     
