@@ -73,10 +73,9 @@ public BufferedImage getSavedImage()
             
             if (imageCount % 10 == 0)
             {
-                String filename = String.format("C:/images/test %5d.bmp", imageCount);
-                ImageIO.write(image, "bmp", new File(filename));
+                //String filename = String.format("C:/images/test %5d.bmp", imageCount);
+                //ImageIO.write(image, "bmp", new File(filename));
             }
-            
         }
         
         return null;    
