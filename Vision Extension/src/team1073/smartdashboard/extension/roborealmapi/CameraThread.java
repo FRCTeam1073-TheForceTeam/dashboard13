@@ -62,7 +62,7 @@ public BufferedImage getSavedImage()
         
         while(! isCancelled())
         {
-            Thread.sleep(50);
+            Thread.sleep(500);
             
             image = this.displayImage();
             savedImage = image;
