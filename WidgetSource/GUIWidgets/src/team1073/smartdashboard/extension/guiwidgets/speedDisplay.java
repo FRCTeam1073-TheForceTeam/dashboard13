@@ -11,7 +11,9 @@ import edu.wpi.first.smartdashboard.properties.DoubleProperty;
 import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -40,19 +42,22 @@ public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
     }
     
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics graphics){
+    Graphics2D g = (Graphics2D) graphics;
     Dimension size  = getSize(); 
     
     g.setColor(Color.BLACK);
-    g.fillRect(0, 0, 64, 200);
+    g.fillRect(50, 50, 64, 200);
     
     int barHeight = (int)(size.height * actualValue/100.0);
     g.setColor(Color.GREEN);
-    g.fillRect(0, 200 - barHeight, 64, barHeight);
+    g.fillRect(50, 250 - barHeight, 64, barHeight);
     g.setColor(Color.BLACK);
-    g.drawRect(0, 0, 64 - 1, 200 - 1);
+    g.drawRect(50, 50, 64 - 1, 200 - 1);
     
-    g.drawString("Speed: " + Integer.toString(Math.abs((int)actualValue)), 0, 21);
+    Font font = new Font("Arial", Font.BOLD, 16);
+    graphics.setFont(font);
+    g.drawString("Speed: " + Integer.toString(Math.abs((int)actualValue)), 47, 272);
     }
    
 }
