@@ -9,6 +9,7 @@ import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.properties.DoubleProperty;
 import edu.wpi.first.smartdashboard.types.DataType;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -46,13 +47,18 @@ public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
     Graphics2D g = (Graphics2D) graphics;
     Dimension size  = getSize(); 
     
+    int height = 200;
+    
+    int barHeight = (int)(height * actualValue/100.0);
+    
     g.setColor(Color.BLACK);
     g.fillRect(50, 50, 64, 200);
     
-    int barHeight = (int)(size.height * actualValue/100.0);
     g.setColor(Color.GREEN);
     g.fillRect(50, 250 - barHeight, 64, barHeight);
+    
     g.setColor(Color.BLACK);
+    g.setStroke(new BasicStroke (2.0f));
     g.drawRect(50, 50, 64 - 1, 200 - 1);
     
     Font font = new Font("Arial", Font.BOLD, 16);
