@@ -67,9 +67,9 @@ public class AngleDisplay extends StaticWidget{
             graphics.setFont(font);
             graphics.drawString("INVALID ANGLE", 75, 160);
         }
-        Font font = new Font("Arial", Font.BOLD, 14);
+        Font font = new Font("Arial", Font.BOLD, 16);
         graphics.setFont(font);
-        graphics.drawString("Angle: " + Integer.toString(angle), 75, 140);
+        graphics.drawString("Angle: " + Integer.toString(angle), 75, 143);
 
     }
     

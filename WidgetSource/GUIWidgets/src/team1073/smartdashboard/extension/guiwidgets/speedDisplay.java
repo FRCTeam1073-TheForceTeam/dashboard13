@@ -26,7 +26,6 @@ public static final DataType[] TYPES = { DataType.NUMBER };
 private double actualValue = 0.0;
 public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
 
-   // @Override
        public void setValue(Object value){
         this.actualValue = ((Number)value).doubleValue();
         repaint();
