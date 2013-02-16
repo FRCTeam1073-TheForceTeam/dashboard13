@@ -26,18 +26,27 @@ public class VisionProccesing {
     //double currentAngle = 0;
     //double currentSpeed = 0;
     
+    //camera resolution
     final double imageH = 600;
     final double imageW = 800;
+    
+    //robot or situation dependent variables
+    final double cameraAngle = 16.6;
     final double deltaH = 63;
-    final double cameraFieldOfView = 34.2;
-    final double cameraHorizontalView = 69;
     final double cameraOffset = 0;
-    final double cameraAngle = 2;
+    final double targetCenter = 103.25/12;
     final double cameraHeight = 2;
+    final double maxRPM = 3600;
+    
+    //calibrated values for m1013
+    final double cameraFieldOfView = 47.3;
+    final double cameraHorizontalView = 67;
+   
+    //calculated values for making distance calcs easier
     final double theta1 = (3.141592/180)*(cameraAngle/2);
     final double theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1;
-    final double targetCenter = 103.25/12;
-    final double maxRPM = 3600;
+    
+    //initializing variables from robot
     double distance = 0;
     double targetAngle = 0;
     double targetRPM = 0;
@@ -69,7 +78,7 @@ public class VisionProccesing {
         targetAngle = Math.atan(targetCenter/distance);
         targetRPM = maxRPM;
         
-        
+        //sends "optimal" speed and angle to robot
         sendCalcValues(targetAngle, targetRPM);
         
         
@@ -88,7 +97,7 @@ public class VisionProccesing {
         
         System.out.println(distance + " , " + targetAngle + " , " + targetRPM + " , " + impactXPixel + " , " + impactYPixel);
         
-        
+        //draws reticle
         return drawReticle(image, impactXPixel, impactYPixel);
     }
     
