@@ -11,6 +11,7 @@ import edu.wpi.first.smartdashboard.types.DataType;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.lang.Math;
@@ -18,9 +19,14 @@ import java.lang.Math;
  *
  * @author Kate
  * Nick Also Helped :)
+ * Don't Forget Keenan
+ * ____━━____┓━╭━━━━━╮
+____━━____┗┓|::::::^━━━^
+____━━____━┗|:::::|｡◕‿‿ ◕｡|
+____━━____━━╰O--O-O--O﻿ NYAN CAT
  */
 public class Speedometer extends StaticWidget{
-    private final int maxSpeed = 20;
+    private final int maxSpeed = 3700;
     private final int minSpeed = 0;
     private int speed;
     public final IntegerProperty newVal = new IntegerProperty(this, "Speed", 0);
@@ -35,27 +41,42 @@ public class Speedometer extends StaticWidget{
     
     @Override
     protected void paintComponent(Graphics g) {
+        System.out.println("Speed equals" + speed);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(3.0f));
         g2.drawLine(0,150, 150, 150);
         g2.setColor(Color.BLACK);
-        Color c = new Color(255, 255, 255);
-        g.setColor(c);
-        Color d = new Color(255, 200, 200);
-        g.setColor (d);
-        Color e = new Color(255, 230, 230);
-        g.setColor (e);
-        int radius = 150;
-        g2.drawArc(0, 75, radius, radius, -180, -180);
-        float angle = (speed / (maxSpeed - minSpeed) * 180);
-        float endpointx = (float)(Math.cos(Math.toRadians(angle)) * radius/2);
-        float endpointy = (float)(Math.sin(Math.toRadians(angle)) * radius/2);
-
-        if(Math.abs(speed) > 50) {
+        
+        int radius = 75;
+        g2.drawArc(0, 75, 2*radius, 2*radius, 180, -180);
+        float angle = ((float) (maxSpeed - Math.abs(speed)) / (float)(maxSpeed - minSpeed)) * 180;
+        //if the angle passes -90 degrees or 90 degrees make angle 90 or -90
+        if (angle > 180) {
+            
+            angle = 180;
+        }
+        if (angle < 0) {
+            angle = 0;
+        }
+        
+        System.out.println("Angle equals" + angle);
+        float endpointx = 75 + 
+                (float)((Math.cos(Math.toRadians(angle))) * radius);
+        float endpointy = 150 - 
+                (float)((Math.sin(Math.toRadians(angle))) * radius);
+        System.out.println("endpointx: " + (int) endpointx + " endpointy: " + (int) endpointy);
+        g2.drawLine((int)75, (int)150, 
+                (int)endpointx, (int)endpointy);
+            Font font = new Font("Arial", Font.BOLD, 16);
+    g2.setFont(font);
+    g2.drawString("Speed: " + Integer.toString(Math.abs((int)speed)), 47, 180);
+        if(Math.abs(speed) > 3700) {
             g2.setColor(Color.RED);
             g2.fillArc(0, 75, 150, 150, 0, 180);
-        }
+             }
+        
+   
         else {
             int x = Math.abs(speed);
             double angleRad = Math.acos(x/75);
