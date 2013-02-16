@@ -34,7 +34,7 @@ public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
 
     @Override
     public void init() {
-        setPreferredSize(new Dimension(64, 200));
+        setPreferredSize(new Dimension(130, 280));
     }
     
     @Override

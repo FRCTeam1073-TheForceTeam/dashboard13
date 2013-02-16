@@ -5,7 +5,6 @@
 package team1073.smartdashboard.extension.guiwidget;
 
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
-import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.IntegerProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
@@ -43,7 +42,7 @@ public class AngleDisplay extends StaticWidget{
        x2 = 150;
        y2 = 125;
        
-       setPreferredSize(new Dimension(200,80));
+       setPreferredSize(new Dimension(250,200));
     }
      
     @Override
@@ -57,7 +56,7 @@ public class AngleDisplay extends StaticWidget{
             graphics.setColor(Color.GREEN);
             graphics.fillArc(0, 50, 150, 150, 0, angle);
             graphics.setColor(Color.BLACK);
-            graphics.drawArc(0, 50, 150, 150, 0, angle);
+            graphics.drawArc(0,50, 150, 150, 0, angle);
             graphics.drawLine(75, 125, 150, 125); //baseline from center to 0 rad
             graphics.drawLine(75,125, x2, y2);//line from center to set angle
         }
@@ -71,6 +70,7 @@ public class AngleDisplay extends StaticWidget{
         Font font = new Font("Arial", Font.BOLD, 14);
         graphics.setFont(font);
         graphics.drawString("Angle: " + Integer.toString(angle), 75, 140);
+
     }
     
     public void setValue(Object o) {

@@ -30,7 +30,7 @@ public class ClimberStatus extends StaticWidget{
         }
         else {
             
-            g.setStroke(new BasicStroke (3.0f));
+            g.setStroke(new BasicStroke (2.0f));
             graphics.setColor(Color.GREEN);     
             graphics.fillRect(10, 10, 200, 75);
             graphics.setColor(Color.BLACK);
@@ -59,7 +59,7 @@ public class ClimberStatus extends StaticWidget{
     @Override
     public void init() {
        isClimberEngaged = false;
-       setPreferredSize(new Dimension(50,50));
+       setPreferredSize(new Dimension(240,130));
     }
 
     @Override

@@ -24,7 +24,7 @@ public class CameraBorder extends StaticWidget{
         if(!isOldImage) {graphics.setColor(Color.BLACK);}
         else {graphics.setColor(Color.RED);}
         
-        graphics.fillRect(10, 10, 680, 520);
+        graphics.fillRect(10, 10, 550, 390);
     }
 
     public void setValue(Object o) {
@@ -40,7 +40,7 @@ public class CameraBorder extends StaticWidget{
     @Override
     public void init() {
        isOldImage = false;
-       setPreferredSize(new Dimension(50,50));
+       setPreferredSize(new Dimension(600,440));
     }
 
     @Override
