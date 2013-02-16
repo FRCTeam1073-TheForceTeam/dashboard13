@@ -45,7 +45,7 @@ public class DisplayImages extends StaticWidget{
                         try
                         {
                             image = task.getSavedImage();
-                            image = vision.proccessImage(image, api);//proccesing
+                            image = vision.processImage(image, api);//proccesing
                             
                             if(image != null)
                             {
