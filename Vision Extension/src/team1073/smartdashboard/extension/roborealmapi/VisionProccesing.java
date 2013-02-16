@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 /**
  *
@@ -26,9 +27,13 @@ public class VisionProccesing {
     //double currentSpeed = 0;
     
     final double imageH = 600;
+    final double imageW = 800;
     final double deltaH = 63;
     final double cameraFieldOfView = 34.2;
+    final double cameraHorizontalView = 69;
+    final double cameraOffset = 0;
     final double cameraAngle = 2;
+    final double cameraHeight = 2;
     final double theta1 = (3.141592/180)*(cameraAngle/2);
     final double theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1;
     final double targetCenter = 103.25/12;
@@ -56,35 +61,50 @@ public class VisionProccesing {
         //do processing and image overlaying here
         //Don't tell me what to do, Courtney!
         
-        
-                
-        distance = deltaH/(Math.tan((Math.atan((underneathH - (imageH/2))*(Math.tan(theta1+theta2)/240)))+theta2-theta1));
+        //Distance calculations
+        double alpha = Math.atan((underneathH - (imageH/2))*(Math.tan(theta1+theta2)/(imageH/2)));        
+        distance = deltaH/(Math.tan(alpha + theta2 - theta1));
 
+        //calculate target shooter state
         targetAngle = Math.atan(targetCenter/distance);
         targetRPM = maxRPM;
-        System.out.println(distance + " , " + targetAngle + " , " + targetRPM);
+        
         
         sendCalcValues(targetAngle, targetRPM);
         
-        // distance calcs
-//        if (variables[0] != 0) {
-//            distance = (deltaH/(Math.tan(variables[0]+theta2-theta1)))/12;
-//        }
-//        
-//        Calcs calc = new Calcs();
-//        final double MIDDLE_TARGET_HEIGHT = 101/12;
-//        // Creating useless variables that don't need to exist
-//        double projectedPath = calc.getHeight(distance, currentSpeed, currentAngle);
-//        System.out.println(projectedPath);
-//        double PixelToLifeRatio = variables[1]/variables[2];
-//        // Implementing useless variables to give a value to another variable
-//        double projectedPointY = variables[4] - (MIDDLE_TARGET_HEIGHT - projectedPath)*PixelToLifeRatio;
-//        
-//        // Drawing point
-//        image.getGraphics().fillOval((int)variables[3], (int)projectedPointY, 10, 10);
         
+        //find point of impact based on current shooter state
+        Calcs calc = new Calcs();
+        double impactH = 39.37 * calc.getHeight(distance, currentSpeed, currentAngle);
+        
+        //finding Y coordinate
+        double deltaH2 = impactH - cameraHeight;
+        double numerator = Math.tan (Math.atan(deltaH2 / (distance * 12)) + theta2 - theta1);
+        double denominator = Math.tan(theta1 + theta2);
+        int impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
+        
+        //finding X coordinate
+        int impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2))))) - 40;
+        
+        System.out.println(distance + " , " + targetAngle + " , " + targetRPM + " , " + impactXPixel + " , " + impactYPixel);
+        
+        
+        return drawReticle(image, impactXPixel, impactYPixel);
+    }
+    
+    public BufferedImage drawReticle(BufferedImage image, int X, int Y) {
+        Graphics g = image.getGraphics();
+        
+        //reticle Parameters
+        int radius = 10;
+        
+        g.drawLine(X - radius, Y, X + radius, Y);
+        g.drawLine(X, Y - radius, X, Y + radius);
+        g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
+                
         return image;
     }
+    
     
     private double[] getRRVariables()
     {
@@ -101,7 +121,7 @@ public class VisionProccesing {
 //        System.out.println(values[1]);
 //        values[2] = Double.parseDouble(api.getVariable("IMAGE_HEIGHT"));
 //        System.out.println(values[2]);
-        underneathH = Double.parseDouble(api.getVariable("underneathH"));
+          underneathH = Double.parseDouble(api.getVariable("underneathH"));
 //        System.out.println(values[3]);
 //        values[4] = Double.parseDouble(api.getVariable("targetCenterY"));
 //        System.out.println(values[4]);
@@ -127,8 +147,11 @@ public class VisionProccesing {
         
         try
         {
-            currentAngle = (float) visionTable.getNumber("currentAngle");
-            currentSpeed = (float) visionTable.getNumber("currentSpeed");
+            //currentAngle = (float) visionTable.getNumber("currentAngle");
+            //currentSpeed = (float) visionTable.getNumber("currentSpeed");
+            currentAngle = 20;
+            currentSpeed = 3000;
+        
         }
         catch(Exception e)
         {

@@ -32,7 +32,7 @@ public class DisplayImages extends StaticWidget{
         
         task = new CameraThread();
         vision = new VisionProccesing();
-        this.setPreferredSize(new Dimension(640, 480));
+        this.setPreferredSize(new Dimension(800, 600));
         api = task.getApi();
         
 
