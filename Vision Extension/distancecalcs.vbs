@@ -29,6 +29,7 @@ if isArray(list) then
   	' targetPixelHeight = ((lefty - leftyy) + (righty - rightyy)) / 2
 
 	verticalPixelDisplacement = ((leftyy + rightyy)/2)
+	targetRatio = (list(0) - list(2) + list(6) - list(4))/(list(1) - list(7) + list(3) - list(5))
 	'alpha = atn((verticalPixelDisplacement - (imageHeight/2))*(tan(theta1+theta2)/240))
 
 ' write targetPixelHeight 
@@ -44,6 +45,9 @@ if isArray(list) then
 		' SetVariable "distance", ((totalDistance*100)/12)/100
 		' SetVariable "targetH", targetPixelHeight
 		SetVariable "underneathH", verticalPixelDisplacement
+		SetVariable "targetRatio", targetRatio
+		'SetVariable "width", (list(0) - list(2) + list(6) - list(4))/2
+		'SetVariable "height", (list(1) - list(7) + list(3) - list(5))/2
 		'SetVariable "list1", list(1)
 		'SetVariable "list3", list(3)
 		'SetVariable "list5", list(5)

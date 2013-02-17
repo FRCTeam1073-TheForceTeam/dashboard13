@@ -39,7 +39,8 @@ public BufferedImage getSavedImage()
         
     public BufferedImage displayImage() {
         //one byte for each r, g, or b value
-        Dimension size = new Dimension(800, 600);
+        //Dimension size = new Dimension(800, 600);
+        Dimension size = new Dimension(640, 480);
         int[] pixels = roboApi.getImage("processed");
         BufferedImage image = null;
         
@@ -62,7 +63,8 @@ public BufferedImage getSavedImage()
         
         while(! isCancelled())
         {
-            Thread.sleep(500);
+            // Change FPS here:
+            Thread.sleep(150);
             
             image = this.displayImage();
             savedImage = image;

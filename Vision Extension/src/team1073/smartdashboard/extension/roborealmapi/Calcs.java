@@ -41,9 +41,9 @@ public class Calcs {
 	// The drag coefficient dependent on alpha.
 	private static final double ALPHA0 = -4;
 	
-	public double getHeight(double distance, double velocity, double theta) {
+	public double getHeight(double distance, double velocity, double theta, double initalHeight) {
 		velocity = velocity * 6 * 2.54 * Math.PI / (2 * 60 * 100);
-		double y0 = .3302;
+		double y0 = initalHeight/39.37;
 		double vx0 = velocity * Math.cos(theta * Math.PI / 180);
 		double vy0 = velocity * Math.sin(theta * (Math.PI) / 180);
 		double alpha = theta;
@@ -87,6 +87,6 @@ public class Calcs {
 					return y;
                                 }
 			}
-		return -1;
+		return 0;
 	}
 }
