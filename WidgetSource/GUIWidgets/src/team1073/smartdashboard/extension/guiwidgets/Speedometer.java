@@ -68,10 +68,11 @@ public class Speedometer extends StaticWidget{
         if(Math.abs(speed) > 3700) {
             g2.setColor(Color.RED);
             g2.fillArc(0, 75, 150, 150, 0, 180);
+      
         }
         else {
             //g2.drawString("Angle: " + Integer.toString(((int)angle)), 47, 200);
-            Color a = new Color(255,74 + (int)angle, 74 + (int)angle);
+            Color a = new Color(74 + (int)angle,255, 74 + (int)angle);
             g2.setColor(a);
             g2.fillArc(0, 75, 150, 150,(int)angle, 180-(int)angle);
         }
@@ -83,6 +84,7 @@ public class Speedometer extends StaticWidget{
         g2.setColor(Color.BLACK);        
         g2.drawArc(0, 75, 2*radius, 2*radius, 180, -180);   
     }
+    
     
     public void setValue(Object o) {
         int d = speed;
