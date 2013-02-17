@@ -31,10 +31,11 @@ public class VisionProccesing {
     final double imageW = 800;
     
     //robot or situation dependent variables
-    final double cameraAngle = 16.6;
-    final double deltaH = 63;
+    final double cameraAngle = 13.5;
+    final double deltaH0 = 58;
+    final double deltaH = deltaH0-34;
     final double cameraOffset = 0;
-    final double targetCenter = 103.25/12;
+    final double targetCenter = 103.25;
     final double cameraHeight = 2;
     final double maxRPM = 3600;
     
@@ -71,9 +72,19 @@ public class VisionProccesing {
         //Don't tell me what to do, Courtney!
         
         //Distance calculations
-        double alpha = Math.atan((underneathH - (imageH/2))*(Math.tan(theta1+theta2)/(imageH/2)));        
+        double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
-
+        //System.out.println(alpha + ", " + underneathH);
+        
+        System.out.println("distance:  " + distance);
+        System.out.println("underneathH:  " + underneathH);
+        System.out.println("alpha:  " + alpha);
+        System.out.println("theta1:  " + theta1);
+        System.out.println("theta2:  " + theta2);
+        System.out.println("imageH:  " + imageH);
+        
+        //System.out.println(distance + " , " + theta1 + " , " + theta2 + " , " + imageH + " , ");
+        
         //calculate target shooter state
         targetAngle = Math.atan(targetCenter/distance);
         targetRPM = maxRPM;
@@ -84,7 +95,7 @@ public class VisionProccesing {
         
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
-        double impactH = 39.37 * calc.getHeight(distance, currentSpeed, currentAngle);
+        double impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle);
         
         //finding Y coordinate
         double deltaH2 = impactH - cameraHeight;
@@ -93,9 +104,8 @@ public class VisionProccesing {
         int impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
         
         //finding X coordinate
-        int impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2))))) - 40;
+        int impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2)))));
         
-        System.out.println(distance + " , " + targetAngle + " , " + targetRPM + " , " + impactXPixel + " , " + impactYPixel);
         
         //draws reticle
         return drawReticle(image, impactXPixel, impactYPixel);
@@ -141,7 +151,7 @@ public class VisionProccesing {
         }
         catch(Exception e)
         {
-            System.out.println("ERROR: BLAME PEPIN");
+            System.out.println("ERROR: BLAME PEPIN" + e);
         }
         //add more getVariable calls for more variables
         //Don't tell me what to do!
