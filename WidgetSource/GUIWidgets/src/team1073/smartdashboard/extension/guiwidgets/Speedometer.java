@@ -36,6 +36,7 @@ public class Speedometer extends StaticWidget{
     public void init() {
         speed = 0;
         setPreferredSize(new Dimension(200,150));
+        
     }
     
     
@@ -43,12 +44,7 @@ public class Speedometer extends StaticWidget{
     protected void paintComponent(Graphics g) {
         System.out.println("Speed equals" + speed);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(3.0f));
-        g2.drawLine(0,150, 150, 150);
-        g2.setColor(Color.BLACK);
         int radius = 75;
-        g2.drawArc(0, 75, 2*radius, 2*radius, 180, -180);
         float angle = ((float) (maxSpeed - Math.abs(speed)) / (float)(maxSpeed - minSpeed)) * 180;
         //if the angle passes -90 degrees or 90 degrees make angle 90 or -90
         if (angle > 180) {
@@ -65,27 +61,27 @@ public class Speedometer extends StaticWidget{
         float endpointy = 150 - 
                 (float)((Math.sin(Math.toRadians(angle))) * radius);
         System.out.println("endpointx: " + (int) endpointx + " endpointy: " + (int) endpointy);
-        g2.drawLine((int)75, (int)150, 
-                (int)endpointx, (int)endpointy);
-            Font font = new Font("Arial", Font.BOLD, 16);
-    g2.setFont(font);
-    g2.drawString("Speed: " + Integer.toString(Math.abs((int)speed)), 47, 180);
+
+        Font font = new Font("Arial", Font.BOLD, 16);
+        g2.setFont(font);
+        g2.drawString("Speed: " + Integer.toString(Math.abs((int)speed)), 47, 180);
         if(Math.abs(speed) > 3700) {
             g2.setColor(Color.RED);
             g2.fillArc(0, 75, 150, 150, 0, 180);
-             }
+        }
         else {
             //g2.drawString("Angle: " + Integer.toString(((int)angle)), 47, 200);
             Color a = new Color(255,74 + (int)angle, 74 + (int)angle);
             g2.setColor(a);
             g2.fillArc(0, 75, 150, 150,(int)angle, 180-(int)angle);
-            
-
         }
-            
-        
-   
-       
+
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(3.0f));
+        g2.drawLine((int)75, (int)150,(int)endpointx, (int)endpointy);
+        g2.drawLine(0,150, 150, 150);
+        g2.setColor(Color.BLACK);        
+        g2.drawArc(0, 75, 2*radius, 2*radius, 180, -180);   
     }
     
     public void setValue(Object o) {
