@@ -26,18 +26,18 @@ public class ClimberStatus extends StaticWidget{
         Graphics2D g = (Graphics2D) graphics;
         if(!isClimberEngaged) {
             graphics.setColor(Color.BLACK);
-            graphics.fillRect(10, 10, 200, 75);
+            graphics.fillRect(10, 10, 330, 100);
         }
         else {
             
             g.setStroke(new BasicStroke (2.0f));
             graphics.setColor(Color.GREEN);     
-            graphics.fillRect(10, 10, 200, 75);
+            graphics.fillRect(10, 10, 330, 100);
             graphics.setColor(Color.BLACK);
-            Font font = new Font("Arial", Font.BOLD, 16);
+            Font font = new Font("Arial", Font.BOLD, 24);
             graphics.setFont(font);
-            graphics.drawString("CLIMBER ENGAGED", 30, 55);
-            graphics.drawRect(10, 10, 200, 75);
+            graphics.drawString("CLIMBER ENGAGED", 53, 70);
+            graphics.drawRect(10, 10, 330, 100);
         }
         
 
@@ -59,7 +59,7 @@ public class ClimberStatus extends StaticWidget{
     @Override
     public void init() {
        isClimberEngaged = false;
-       setPreferredSize(new Dimension(240,130));
+       setPreferredSize(new Dimension(400,130));
     }
 
     @Override

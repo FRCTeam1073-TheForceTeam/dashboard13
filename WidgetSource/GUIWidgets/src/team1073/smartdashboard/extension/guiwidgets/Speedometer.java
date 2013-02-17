@@ -35,7 +35,7 @@ public class Speedometer extends StaticWidget{
     @Override
     public void init() {
         speed = 0;
-        setPreferredSize(new Dimension(200,150));
+        setPreferredSize(new Dimension(200,200));
         
     }
     
@@ -64,7 +64,8 @@ public class Speedometer extends StaticWidget{
 
         Font font = new Font("Arial", Font.BOLD, 16);
         g2.setFont(font);
-        g2.drawString("Speed: " + Integer.toString(Math.abs((int)speed)), 47, 180);
+        g2.drawString("Speed: " + Integer.toString(Math.abs((int)speed)), 28, 170);
+        
         if(Math.abs(speed) > 3700) {
             g2.setColor(Color.RED);
             g2.fillArc(0, 75, 150, 150, 0, 180);
@@ -78,7 +79,7 @@ public class Speedometer extends StaticWidget{
         }
 
         g2.setColor(Color.BLACK);
-        g2.setStroke(new BasicStroke(3.0f));
+        g2.setStroke(new BasicStroke(2.0f));
         g2.drawLine((int)75, (int)150,(int)endpointx, (int)endpointy);
         g2.drawLine(0,150, 150, 150);
         g2.setColor(Color.BLACK);        

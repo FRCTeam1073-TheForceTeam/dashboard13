@@ -24,7 +24,7 @@ public class CameraBorderSmall extends StaticWidget{
         if(!isOldImage) {graphics.setColor(Color.BLACK);}
         else {graphics.setColor(Color.RED);}
         
-        graphics.fillRect(10, 10, 280, 190);
+        graphics.fillRect(10, 10, 230, 160);
     }
 
     public void setValue(Object o) {

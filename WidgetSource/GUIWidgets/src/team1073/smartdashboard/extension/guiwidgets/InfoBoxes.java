@@ -40,14 +40,14 @@ public class InfoBoxes extends StaticWidget{
         
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke (2.0f));
-        g.drawRect(50, 50, 350, 450);
+        g.drawRect(50, 50, 380, 390);
         
-        g.drawLine(223, 50, 223, 500);
-        g.drawLine(50, 460, 400, 460);
+        g.drawLine(239, 50, 239, 440);
+        /*g.drawLine(50, 460, 400, 460);
         
         Font font = new Font("Arial", Font.BOLD, 16);
         graphics.setFont(font);
         g.drawString("Current", 105, 485);
-        g.drawString("Calculated", 265, 485);
+        g.drawString("Calculated", 265, 485);*/
     }
 }

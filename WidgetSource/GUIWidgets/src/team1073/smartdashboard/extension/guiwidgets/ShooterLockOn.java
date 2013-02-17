@@ -25,24 +25,20 @@ public class ShooterLockOn extends StaticWidget{
     protected void paintComponent (Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
         if(!isShooterLockedOn) {
-            graphics.setColor(Color.RED);
-            graphics.fillRect(10, 10, 200, 75);
             graphics.setColor(Color.BLACK);
-            Font font = new Font("Arial", Font.BOLD, 32);
-            graphics.setFont(font);
-            graphics.drawString("ENGAGING", 30, 55);
+            graphics.fillRect(10, 10, 330, 100);
             
         }
         else {
             
             g.setStroke(new BasicStroke (2.0f));
             graphics.setColor(Color.GREEN);     
-            graphics.fillRect(10, 10, 200, 75);
+            graphics.fillRect(10, 10, 330, 100);
             graphics.setColor(Color.BLACK);
-            Font font = new Font("Arial", Font.BOLD, 32);
+            Font font = new Font("Arial", Font.BOLD, 24);
             graphics.setFont(font);
-            graphics.drawString("LOCKED ON", 16, 55);
-            graphics.drawRect(10, 10, 200, 75);
+            graphics.drawString("LOCKED ON", 98, 70);
+            graphics.drawRect(10, 10, 330, 100);
         }
         
 
@@ -64,7 +60,7 @@ public class ShooterLockOn extends StaticWidget{
     @Override
     public void init() {
        isShooterLockedOn = false;
-       setPreferredSize(new Dimension(240,130));
+       setPreferredSize(new Dimension(400,130));
     }
 
     @Override
