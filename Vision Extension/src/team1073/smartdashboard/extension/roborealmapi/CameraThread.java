@@ -81,7 +81,6 @@ public double getTargetRatio()
 
             System.out.println("Image Count:" + imageCount);
             setProgress(imageCount % 99);
-            System.out.println("finished setPRogress");
             
             if (imageCount % 10 == 0)
             {
@@ -120,7 +119,6 @@ public double getTargetRatio()
            if(roboApi.getVariable("targetRatio") == null) {
                targetRatio = 0;
            }
-          System.out.println("Target Ratio:" + targetRatio);
 //        System.out.println(values[3]);
 //        values[4] = Double.parseDouble(api.getVariable("targetCenterY"));
 //        System.out.println(values[4]);

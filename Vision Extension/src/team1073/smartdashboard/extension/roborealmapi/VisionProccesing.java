@@ -35,8 +35,10 @@ public class VisionProccesing {
     
     //robot or situation dependent variables
     final double cameraAngle = 17.8;
-    double deltaH0 = 58; // changes depending on target
-    final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
+    final double HIGH_DELTA_H = 76.5;
+    final double MIDDLE_DELTA_H = 58.5;
+    double deltaH; // changes depending on target
+    //final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
     final double cameraOffset = 0;
     final double targetCenter = 103.25;
     final double cameraHeight = 59;
@@ -57,7 +59,7 @@ public class VisionProccesing {
     
     // target determining
     final double MIDDLE_RATIO = 2.32;
-    final double HIGH_RATIO = 3.625;
+    final double HIGH_RATIO = 3.1;
     double targetRatio = 0;
     double impactH = 0;
     boolean isHighGoal = false;
@@ -82,6 +84,14 @@ public class VisionProccesing {
         //Don't tell me what to do, Courtney!
         
         //Distance calculations
+                if(Math.abs(targetRatio - HIGH_RATIO) < Math.abs(targetRatio - MIDDLE_RATIO)) {
+            isHighGoal = true;
+        } else {
+            isHighGoal = false;
+        }
+                
+        deltaH = (isHighGoal?HIGH_DELTA_H:MIDDLE_DELTA_H);
+        
         double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
         //System.out.println(alpha + ", " + underneathH);
@@ -124,7 +134,7 @@ public class VisionProccesing {
         
         
         
-        System.out.println("distance:  " + distance + "impactH:  " + impactH);
+        System.out.println("distance:  " + distance + "\nimpactH:  " + impactH);
         //System.out.println("underneathH:  " + underneathH);
         //System.out.println("delataH2:  " + deltaH2);
         //System.out.println("e:  " + zero);
@@ -138,11 +148,7 @@ public class VisionProccesing {
         }
         
         // target type determining
-        if(Math.abs(targetRatio - HIGH_RATIO) < Math.abs(targetRatio - MIDDLE_RATIO)) {
-            isHighGoal = true;
-        } else {
-            isHighGoal = false;
-        }
+
         
         deltaT = System.nanoTime() - deltaT;
         System.out.println("DeltaT: " + deltaT);
