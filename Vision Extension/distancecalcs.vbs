@@ -6,7 +6,7 @@ if isArray(list) then
    ' targetSamples = 0
 
     ' calibrated for an Axis camera
-     imageHeight = GetVariable("IMAGE_HEIGHT")
+    ' imageHeight = GetVariable("IMAGE_HEIGHT")
   ' 	cameraFieldOfView = 34.9
 	' 	cameraAngle = 8.5
 	' targetHeight = 29

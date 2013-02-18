@@ -42,11 +42,23 @@ public class DisplayImages extends StaticWidget{
                 @Override
                 public void propertyChange(PropertyChangeEvent evt){
                     if ("progress".equals(evt.getPropertyName())){
-                        
+                        System.out.println("started propertyChange");
                         try
                         {
                             image = task.getSavedImage();
-                            image = vision.processImage(image, api);//proccesing
+                            double targetRatio = task.getTargetRatio();
+                            double underneathH = task.getUnderneathH();
+                            System.out.println("image" + image);
+                            try {
+                            image = vision.processImage(image, underneathH, targetRatio);//proccesing
+                            System.out.println("inside try");
+                            
+                            }
+                            catch(Exception e) {
+                               System.out.println(e.getStackTrace()); 
+                            }
+                            
+                            System.out.println("finished try");
                             
                             if(image != null)
                             {
@@ -57,6 +69,7 @@ public class DisplayImages extends StaticWidget{
                         {
                             System.out.println("Exception: " + e.toString());
                         }
+                        System.out.println("ended propertyChange");
                     }
                     else
                     {

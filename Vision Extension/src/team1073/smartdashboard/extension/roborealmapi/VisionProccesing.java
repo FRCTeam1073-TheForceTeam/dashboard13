@@ -34,7 +34,7 @@ public class VisionProccesing {
     final double imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraAngle = 13.5;
+    final double cameraAngle = 17.8;
     double deltaH0 = 58; // changes depending on target
     final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
     final double cameraOffset = 0;
@@ -43,7 +43,7 @@ public class VisionProccesing {
     final double maxRPM = 3600;
     
     //calibrated values for m1013
-    final double cameraFieldOfView = 47.3;
+    final double cameraFieldOfView = 48.8;
     final double cameraHorizontalView = 67;
    
     //calculated values for making distance calcs easier
@@ -61,6 +61,7 @@ public class VisionProccesing {
     double targetRatio = 0;
     double impactH = 0;
     boolean isHighGoal = false;
+    double deltaT;
     
     VisionProccesing()
     {
@@ -71,11 +72,10 @@ public class VisionProccesing {
         
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, RR_API roboApi)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio)
     {  
+        deltaT = System.nanoTime();
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
-        api = roboApi;
-        variables = getRRVariables();//gets roboRealm's variables, see below
         getCurrentValues();//gets actual valus from robot, see below
         
         //do processing and image overlaying here
@@ -95,12 +95,13 @@ public class VisionProccesing {
         
         //System.out.println(distance + " , " + theta1 + " , " + theta2 + " , " + imageH + " , ");
         
-        //calculate target shooter state
+        //calculate "optimal" shooter state
         targetAngle = Math.atan(targetCenter/distance);
         targetRPM = maxRPM;
-        
+        //distance = 350;
         //sends "optimal" speed and angle to robot
-        sendCalcValues(targetAngle, targetRPM);
+        
+        //sendCalcValues(targetAngle, targetRPM);
         
         
         //find point of impact based on current shooter state
@@ -123,13 +124,13 @@ public class VisionProccesing {
         
         
         
-        System.out.println("distance:  " + distance);
-        System.out.println("underneathH:  " + underneathH);
-        System.out.println("delataH2:  " + deltaH2);
-        System.out.println("e:  " + zero);
-        System.out.println("thetathree:  " + three);
-        System.out.println("impactH:  " + impactH);
-        System.out.println("impactYPixel:  " + impactYPixel);
+        System.out.println("distance:  " + distance + "impactH:  " + impactH);
+        //System.out.println("underneathH:  " + underneathH);
+        //System.out.println("delataH2:  " + deltaH2);
+        //System.out.println("e:  " + zero);
+        //System.out.println("thetathree:  " + three);
+        //System.out.println("impactH:  " + impactH);
+        //System.out.println("impactYPixel:  " + impactYPixel);
         
         
         //finding X coordinate
@@ -143,6 +144,8 @@ public class VisionProccesing {
             isHighGoal = false;
         }
         
+        deltaT = System.nanoTime() - deltaT;
+        System.out.println("DeltaT: " + deltaT);
         
         //draws reticle
         return drawing(image, impactXPixel, impactYPixel);
@@ -172,43 +175,8 @@ public class VisionProccesing {
     }
     
     
-    private double[] getRRVariables()
-    {
-        //only call from proccessImage function please
-        double[] values = new double[8];
-        
-        //String variable = api.getVariable("Distance");
-        //System.out.println("RoboRealm returned variable :" + variable);
-        try
-        {
-//        values[0] = Double.parseDouble(api.getVariable("alpha"));
-//        System.out.println(values[0]);
-//        values[1] = Double.parseDouble(api.getVariable("targetH"));
-//        System.out.println(values[1]);
-//        values[2] = Double.parseDouble(api.getVariable("IMAGE_HEIGHT"));
-//        System.out.println(values[2]);
-          
-          underneathH = Double.parseDouble(api.getVariable("underneathH"));
-          targetRatio = Double.parseDouble(api.getVariable("targetRatio"));
-          System.out.println(targetRatio);
-//        System.out.println(values[3]);
-//        values[4] = Double.parseDouble(api.getVariable("targetCenterY"));
-//        System.out.println(values[4]);
-        
-//        double alpha = Math.atan((values[3] - (imageH/2))*(Math.tan(theta1+theta2)/240));
-//        double distance = deltaH/(Math.tan(alpha+theta2-theta1));
-        
-        }
-        catch(Exception e)
-        {
-            System.out.println("ERROR: BLAME PEPIN" + e);
-        }
-        //add more getVariable calls for more variables
-        //Don't tell me what to do!
-            
-        return values;
-    }
     
+            
     private void getCurrentValues()
     {
         System.out.println("Is Connected: " + visionTable.isConnected());
