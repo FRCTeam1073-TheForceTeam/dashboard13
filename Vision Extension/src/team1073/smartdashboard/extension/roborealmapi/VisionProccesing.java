@@ -94,6 +94,17 @@ public class VisionProccesing {
         
         double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
+        
+        System.out.println("raw distance: " + distance);
+        
+        // correction
+        if(!isHighGoal) {
+            distance = 1.1849*distance - 25.659;
+        } else {
+            distance = 1.018*distance - 3.9154;
+        }
+        
+        
         //System.out.println(alpha + ", " + underneathH);
         
 //        System.out.println("distance:  " + distance);
