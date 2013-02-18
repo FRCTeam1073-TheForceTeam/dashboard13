@@ -217,10 +217,10 @@ public class VisionProccesing {
                 
     }
             
-    private void sendCalcValues(double angle, double distance)
+    private void sendCalcValues(double angle, double velocityRPM)
     {
-        visionTable.putNumber("calcAngle", angle);
-        visionTable.putNumber("calcDistance", distance);
+        visionTable.putNumber("calculatedAngle", angle);
+        visionTable.putNumber("calculatedVelocityRPM", velocityRPM);
     }
     
 }
