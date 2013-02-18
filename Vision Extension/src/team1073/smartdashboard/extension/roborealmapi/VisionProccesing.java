@@ -21,11 +21,9 @@ public class VisionProccesing {
     RR_API api;
     double[] variables;
     NetworkTable visionTable;
-    float currentAngle;
-    float currentSpeed;
     double underneathH;
-    //double currentAngle = 0;
-    //double currentSpeed = 0;
+    double currentAngle = 0;
+    double currentSpeed = 0;
     
     //camera resolution
 //    final double imageH = 600;
@@ -34,14 +32,17 @@ public class VisionProccesing {
     final double imageW = 640;
     
     //robot or situation dependent variables
+    final double cameraHeight = 25;
+    final double elevation = 34;
+    double deltaH = cameraHeight + elevation; // changes depending on target
     final double cameraAngle = 17.8;
-    final double HIGH_DELTA_H = 76.5;
-    final double MIDDLE_DELTA_H = 58.5;
-    double deltaH; // changes depending on target
+    final double HIGH_DELTA_H = 101 - deltaH;
+    final double MIDDLE_DELTA_H = 84 - deltaH;
+    
     //final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
     final double cameraOffset = 0;
     final double targetCenter = 103.25;
-    final double cameraHeight = 59;
+    
     final double maxRPM = 3600;
     
     //calibrated values for m1013
@@ -135,13 +136,13 @@ public class VisionProccesing {
         
         //finding Y coordinate
         double deltaH2 = impactH - cameraHeight;
-//        double numerator = Math.tan (Math.atan(deltaH2 / (distance * 12)) + theta2 - theta1);
-//        double denominator = Math.tan(theta1 + theta2);
-//        int impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
+        double numerator = Math.tan (Math.atan(deltaH2 / (distance)) + theta2 - theta1);
+        double denominator = Math.tan(theta1 + theta2);
+        impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
   
-        double zero = imageH/(2 * Math.tan(theta1 + theta2));   //BADASS MOFO UP IN THIS BITCH.
-        double three = Math.atan(deltaH2 / distance) + theta2 - theta1;
-        impactYPixel = (int) ((imageH/2) - (zero * Math.tan(three)));
+//        double zero = imageH/(2 * Math.tan(theta1 + theta2));   //BADASS MOFO UP IN THIS BITCH.
+//        double three = Math.atan(deltaH2 / distance) + theta2 - theta1;
+//        impactYPixel = (int) ((imageH/2) - (zero * Math.tan(three)));
         
         
         
