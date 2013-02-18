@@ -122,7 +122,7 @@ public class VisionProccesing {
         //distance = 350;
         //sends "optimal" speed and angle to robot
         
-        //sendCalcValues(targetAngle, targetRPM);
+        sendCalcValues(targetAngle, targetRPM);
         
         
         //find point of impact based on current shooter state
