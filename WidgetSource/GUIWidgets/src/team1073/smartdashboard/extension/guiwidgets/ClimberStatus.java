@@ -26,18 +26,19 @@ public class ClimberStatus extends StaticWidget{
         Graphics2D g = (Graphics2D) graphics;
         if(!isClimberEngaged) {
             graphics.setColor(Color.BLACK);
-            graphics.fillRect(10, 10, 330, 100);
+            graphics.fillRect(10, 10, 165, 100);
         }
         else {
             
             g.setStroke(new BasicStroke (2.0f));
             graphics.setColor(Color.GREEN);     
-            graphics.fillRect(10, 10, 330, 100);
+            graphics.fillRect(10, 10, 160, 100);
             graphics.setColor(Color.BLACK);
-            Font font = new Font("Arial", Font.BOLD, 24);
+            Font font = new Font("Arial", Font.BOLD, 16);
             graphics.setFont(font);
-            graphics.drawString("CLIMBER ENGAGED", 53, 70);
-            graphics.drawRect(10, 10, 330, 100);
+            graphics.drawString("CLIMBER", 51, 57);
+            graphics.drawString("ENGAGED", 48, 75);
+            graphics.drawRect(10, 10, 160, 100);
         }
         
 
