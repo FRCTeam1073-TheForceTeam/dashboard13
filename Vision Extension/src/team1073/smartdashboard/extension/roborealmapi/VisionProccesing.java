@@ -67,6 +67,7 @@ public class VisionProccesing {
         // Drawing point
         image.getGraphics().fillOval((int)variables[3], (int)projectedPointY, 10, 10);
         
+        
         return image;
     }
     
@@ -120,10 +121,10 @@ public class VisionProccesing {
                 
     }
             
-    private void sendCalcValues(double angle, double distance)
+    private void sendCalcValues(double angle, double calcRPM)
     {
         visionTable.putNumber("calcAngle", angle);
-        visionTable.putNumber("calcDistance", distance);
+        visionTable.putNumber("calcRPM", calcRPM);
     }
     
 }
