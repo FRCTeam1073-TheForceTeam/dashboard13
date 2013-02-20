@@ -11,8 +11,8 @@
   <coeff_a>-1000</coeff_a>
 </Radial_Distortion>
 <Marker>
-  <include_graphics>TRUE</include_graphics>
-  <name>yoloswaggggggggaaaaaa</name>
+  <include_graphics>FALSE</include_graphics>
+  <name>yolo</name>
   <revert_to>Current</revert_to>
 </Marker>
 <RGB_Filter>
@@ -170,7 +170,7 @@ end if
   <image2>Last</image2>
   <function>5</function>
   <divisor>1</divisor>
-  <image1>yoloswaggggggggaaaaaa</image1>
+  <image1>yolo</image1>
   <all_channels>TRUE</all_channels>
   <bias>0</bias>
 </Math>
