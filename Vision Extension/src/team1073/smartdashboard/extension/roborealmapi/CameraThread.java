@@ -21,6 +21,7 @@ public class CameraThread extends SwingWorker<BufferedImage, BufferedImage> {
     int imageCount = 0;
     double underneathH;
     double targetRatio;
+    double targetH;
     
 CameraThread()
 {
@@ -40,11 +41,16 @@ public BufferedImage getSavedImage()
 }
 public double getUnderneathH()
 {
-    return this.underneathH;
+    return underneathH;
 }
 public double getTargetRatio()
 {
-    return this.targetRatio;
+    return targetRatio;
+}
+
+public double getTargetH()
+{
+    return targetH;
 }
         
     public BufferedImage displayImage() {
@@ -116,6 +122,7 @@ public double getTargetRatio()
 //        System.out.println(values[2]);
           underneathH = Double.parseDouble(roboApi.getVariable("underneathH"));
           targetRatio = Double.parseDouble(roboApi.getVariable("targetRatio"));
+          targetH = Double.parseDouble(roboApi.getVariable("targetH"));
            if(roboApi.getVariable("targetRatio") == null) {
                targetRatio = 0;
            }

@@ -46,6 +46,7 @@ if isArray(list) then
 		' SetVariable "targetH", targetPixelHeight
 		SetVariable "underneathH", verticalPixelDisplacement
 		SetVariable "targetRatio", targetRatio
+		SetVariable "targetH", (list(1) - list(7) + list(3) - list(5))
 		'SetVariable "width", (list(0) - list(2) + list(6) - list(4))/2
 		'SetVariable "height", (list(1) - list(7) + list(3) - list(5))/2
 		'SetVariable "list1", list(1)

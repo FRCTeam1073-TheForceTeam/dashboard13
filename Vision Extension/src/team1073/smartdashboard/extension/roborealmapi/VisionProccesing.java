@@ -21,7 +21,6 @@ public class VisionProccesing {
     RR_API api;
     double[] variables;
     NetworkTable visionTable;
-    double underneathH;
     double currentAngle = 0;
     double currentSpeed = 0;
     
@@ -64,7 +63,6 @@ public class VisionProccesing {
     double targetRatio = 0;
     double impactH = 0;
     boolean isHighGoal = false;
-    double deltaT;
     
     VisionProccesing()
     {
@@ -75,17 +73,16 @@ public class VisionProccesing {
         
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH)
     {  
-        deltaT = System.nanoTime();
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
         getCurrentValues();//gets actual valus from robot, see below
         
         //do processing and image overlaying here
         //Don't tell me what to do, Courtney!
         
-        //Distance calculations
-                if(Math.abs(targetRatio - HIGH_RATIO) < Math.abs(targetRatio - MIDDLE_RATIO)) {
+        // target type determining
+        if(Math.abs(targetRatio - HIGH_RATIO) < Math.abs(targetRatio - MIDDLE_RATIO)) {
             isHighGoal = true;
         } else {
             isHighGoal = false;
@@ -126,6 +123,8 @@ public class VisionProccesing {
         sendCalcValues(targetAngle, targetRPM);
         
         
+        //Distance calculations
+        
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
         impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle, cameraHeight);
@@ -134,15 +133,19 @@ public class VisionProccesing {
         
         if (impactH != 0){
         
-        //finding Y coordinate
-        double deltaH2 = impactH - cameraHeight;
-        double numerator = Math.tan (Math.atan(deltaH2 / (distance)) + theta2 - theta1);
-        double denominator = Math.tan(theta1 + theta2);
-        impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
+        //finding Y coordinate (Anish version)
+//        double deltaH2 = impactH - cameraHeight;
+//        double numerator = Math.tan (Math.atan(deltaH2 / (distance)) + theta2 - theta1);
+//        double denominator = Math.tan(theta1 + theta2);
+//        impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
   
 //        double zero = imageH/(2 * Math.tan(theta1 + theta2));   //BADASS MOFO UP IN THIS BITCH.
 //        double three = Math.atan(deltaH2 / distance) + theta2 - theta1;
 //        impactYPixel = (int) ((imageH/2) - (zero * Math.tan(three)));
+            
+            
+        //finding Y coodrinate (Michael version)
+        impactYPixel = (int)((targetH/(deltaH+cameraHeight))*(impactH-deltaH-cameraHeight)+underneathH);
         
         
         
@@ -158,12 +161,6 @@ public class VisionProccesing {
         //finding X coordinate
         impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2)))));
         }
-        
-        // target type determining
-
-        
-        deltaT = System.nanoTime() - deltaT;
-        System.out.println("DeltaT: " + deltaT);
         
         //draws reticle
         return drawing(image, impactXPixel, impactYPixel);

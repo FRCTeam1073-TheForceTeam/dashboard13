@@ -47,8 +47,9 @@ public class DisplayImages extends StaticWidget{
                             image = task.getSavedImage();
                             double targetRatio = task.getTargetRatio();
                             double underneathH = task.getUnderneathH();
+                            double targetH = task.getTargetH();
                             try {
-                            image = vision.processImage(image, underneathH, targetRatio);//proccesing
+                            image = vision.processImage(image, underneathH, targetRatio, targetH);//proccesing
                             
                             }
                             catch(Exception e) {
