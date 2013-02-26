@@ -11,12 +11,12 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 
-public class CameraBorder extends StaticWidget{
+public class CameraBorderSmall extends StaticWidget{
     private boolean isOldImage;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Old Image", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
     
-    public CameraBorder () {isOldImage = false;}
+    public CameraBorderSmall () {isOldImage = false;}
     
     @Override
     protected void paintComponent (Graphics graphics) {
@@ -24,7 +24,7 @@ public class CameraBorder extends StaticWidget{
         if(!isOldImage) {graphics.setColor(Color.BLACK);}
         else {graphics.setColor(Color.RED);}
         
-        graphics.fillRect(10, 10, 550, 390);
+        graphics.fillRect(10, 10, 230, 160);
     }
 
     public void setValue(Object o) {
@@ -40,7 +40,7 @@ public class CameraBorder extends StaticWidget{
     @Override
     public void init() {
        isOldImage = false;
-       setPreferredSize(new Dimension(600,440));
+       setPreferredSize(new Dimension(400,240));
     }
 
     @Override

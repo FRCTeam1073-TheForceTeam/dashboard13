@@ -14,19 +14,20 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
-public class ClimberStatus extends StaticWidget{
-    private boolean isClimberEngaged;
-    public final BooleanProperty newVal = new BooleanProperty(this, "Is Climber Engaged", false);
+public class ShooterLockOn extends StaticWidget{
+    private boolean isShooterLockedOn;
+    public final BooleanProperty newVal = new BooleanProperty(this, "Is Shooter Locked On", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
     
-    public ClimberStatus () {isClimberEngaged = false;}
+    public ShooterLockOn () {isShooterLockedOn = false;}
     
     @Override
     protected void paintComponent (Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
-        if(!isClimberEngaged) {
+        if(!isShooterLockedOn) {
             graphics.setColor(Color.BLACK);
             graphics.fillRect(10, 10, 165, 100);
+            
         }
         else {
             
@@ -36,8 +37,7 @@ public class ClimberStatus extends StaticWidget{
             graphics.setColor(Color.BLACK);
             Font font = new Font("Arial", Font.BOLD, 16);
             graphics.setFont(font);
-            graphics.drawString("CLIMBER", 51, 57);
-            graphics.drawString("ENGAGED", 48, 75);
+            graphics.drawString("LOCKED ON", 40, 65);
             graphics.drawRect(10, 10, 160, 100);
         }
         
@@ -45,21 +45,21 @@ public class ClimberStatus extends StaticWidget{
     }
     
     public void setValue(Object o) {
-       boolean b = isClimberEngaged;
+       boolean b = isShooterLockedOn;
        
        try{b = (Boolean) o;}
        catch(Exception e){
        
-       System.out.println("ClimberStatus setValue exception " + e);
+       System.out.println("ShooterStatus setValue exception " + e);
        }
        
-       isClimberEngaged = b;
+       isShooterLockedOn = b;
        repaint();
     }
 
     @Override
     public void init() {
-       isClimberEngaged = false;
+       isShooterLockedOn = false;
        setPreferredSize(new Dimension(400,130));
     }
 

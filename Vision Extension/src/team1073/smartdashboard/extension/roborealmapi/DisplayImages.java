@@ -32,6 +32,7 @@ public class DisplayImages extends StaticWidget{
         
         task = new CameraThread();
         vision = new VisionProccesing();
+        //this.setPreferredSize(new Dimension(800, 600));
         this.setPreferredSize(new Dimension(640, 480));
         api = task.getApi();
         
@@ -41,11 +42,20 @@ public class DisplayImages extends StaticWidget{
                 @Override
                 public void propertyChange(PropertyChangeEvent evt){
                     if ("progress".equals(evt.getPropertyName())){
-                        
                         try
                         {
                             image = task.getSavedImage();
-                            image = vision.proccessImage(image, api);//proccesing
+                            double targetRatio = task.getTargetRatio();
+                            double underneathH = task.getUnderneathH();
+                            double targetH = task.getTargetH();
+                            try {
+                            image = vision.processImage(image, underneathH, targetRatio, targetH);//proccesing
+                            
+                            }
+                            catch(Exception e) {
+                               System.out.println(e.getStackTrace()); 
+                            }
+                            
                             
                             if(image != null)
                             {

@@ -66,7 +66,7 @@ public class DiscCount extends StaticWidget{
     @Override
     public void init() {
         count = 0;
-        setPreferredSize(new Dimension(330, 100));
+        setPreferredSize(new Dimension(400, 200));
     }
     @Override
     public void propertyChanged(Property prprt) {

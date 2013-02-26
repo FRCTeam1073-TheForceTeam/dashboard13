@@ -299,7 +299,6 @@ class RR_API
         else
           top=0;
       }
-      num+=res;
     }
   }
 
@@ -484,8 +483,12 @@ class RR_API
 
   public String getVariable(String name)
   {
-    if (!connected) return null;
-    if ((name==null)||(name.length()==0)) return null;
+    if (!connected){ 
+        return null;
+    }    
+    if ((name==null)||(name.length()==0)) {
+        return null;
+    }
 
     if (send("<request><get_variable>"+escape(name)+"</get_variable></request>"))
     {
