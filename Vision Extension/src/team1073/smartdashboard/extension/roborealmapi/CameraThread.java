@@ -92,7 +92,7 @@ public double getTargetH()
                 //ImageIO.write(image, "bmp", new File(filename));
             }
             // Change FPS here:
-            Thread.sleep(50);
+            Thread.sleep(200);
         }
         
         
