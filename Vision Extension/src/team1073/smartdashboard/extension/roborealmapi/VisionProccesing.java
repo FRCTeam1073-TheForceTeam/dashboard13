@@ -131,12 +131,10 @@ public class VisionProccesing {
         int impactXPixel = 0;
         int impactYPixel = 0;
         
-        if (impactH != 0){
-        
-<<<<<<< HEAD
-        
-        return image;
-=======
+        if (impactH != 0)
+        {       
+            return image;
+        }
         //finding Y coordinate (Anish version)
 //        double deltaH2 = impactH - cameraHeight;
 //        double numerator = Math.tan (Math.atan(deltaH2 / (distance)) + theta2 - theta1);
@@ -164,31 +162,31 @@ public class VisionProccesing {
         
         //finding X coordinate
         impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2)))));
-        }
         
         //draws reticle
         return drawing(image, impactXPixel, impactYPixel);
->>>>>>> d0f7eb9593fcbe9e89f483e02489df75e3b203b9
     }
     
-    public BufferedImage drawing(BufferedImage image, int X, int Y) {
-        if (impactH != 0){
-        Graphics g = image.getGraphics();
-        
-        //reticle Parameters
-        int radius = 10;
-        g.setColor(Color.RED);
-        g.drawLine(X - radius, Y, X + radius, Y);
-        g.drawLine(X, Y - radius, X, Y + radius);
-        g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
-        
-        // strings
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Matt Carr", Font.BOLD, 22));
-        g.drawString("RPM: " + Math.round(currentSpeed) + ", Angle: "
-                + Math.round(currentAngle) + ", Target Angle:" 
-                + Math.round(targetAngle) + ", Target type: " 
-                + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
+    public BufferedImage drawing(BufferedImage image, int X, int Y) 
+    {
+        if (impactH != 0)
+        {
+            Graphics g = image.getGraphics();
+
+            //reticle Parameters
+            int radius = 10;
+            g.setColor(Color.RED);
+            g.drawLine(X - radius, Y, X + radius, Y);
+            g.drawLine(X, Y - radius, X, Y + radius);
+            g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
+
+            // strings
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Matt Carr", Font.BOLD, 22));
+            g.drawString("RPM: " + Math.round(currentSpeed) + ", Angle: "
+                    + Math.round(currentAngle) + ", Target Angle:" 
+                    + Math.round(targetAngle) + ", Target type: " 
+                    + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
         }
                 
         return image;
@@ -220,17 +218,11 @@ public class VisionProccesing {
                 
     }
             
-<<<<<<< HEAD
     private void sendCalcValues(double angle, double calcRPM)
     {
         visionTable.putNumber("calcAngle", angle);
         visionTable.putNumber("calcRPM", calcRPM);
-=======
-    private void sendCalcValues(double angle, double velocityRPM)
-    {
-        visionTable.putNumber("calculatedAngle", angle);
-        visionTable.putNumber("calculatedVelocityRPM", velocityRPM);
->>>>>>> d0f7eb9593fcbe9e89f483e02489df75e3b203b9
     }
+
     
 }
