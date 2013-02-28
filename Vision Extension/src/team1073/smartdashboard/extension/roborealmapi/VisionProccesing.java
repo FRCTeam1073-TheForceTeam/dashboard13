@@ -55,7 +55,6 @@ public class VisionProccesing {
     
     //initializing variables from robot
     double distance = 0;
-    double rawDistance = 0;
     double targetAngle = 0;
     double targetRPM = 0;
     
@@ -95,15 +94,8 @@ public class VisionProccesing {
         double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
         
-        System.out.println("raw distance: " + distance);
-        rawDistance = distance;
-        
         // correction
-        if(!isHighGoal) {
-            distance = 1.1849*distance - 25.659;
-        } else {
-            distance = 1.018*distance - 3.9154;
-        }
+
         System.out.println("distance: " + distance);
         
         //System.out.println(alpha + ", " + underneathH);
@@ -146,7 +138,7 @@ public class VisionProccesing {
 //        impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
   
         double zero = imageH/(2 * Math.tan(theta1 + theta2));   //BADASS MOFO UP IN THIS BITCH.
-        double three = 0 - Math.atan(deltaH2 / rawDistance) + theta2 - theta1;
+        double three = 0 - Math.atan(deltaH2 / distance) + theta2 - theta1;
         impactYPixel = imageH - ((int) ((imageH/2) - (zero * Math.tan(three))));
             
             
@@ -189,8 +181,7 @@ public class VisionProccesing {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Matt Carr", Font.BOLD, 22));
             g.drawString("impactH: " + Math.round(impactH) + ", distance "
-                    + Math.round(distance) + ", rawdistance:" 
-                    + Math.round(rawDistance) + ", Target type: " 
+                    + Math.round(distance) + ", Target type: " 
                     + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
         }
                 
