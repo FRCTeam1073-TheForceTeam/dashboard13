@@ -31,10 +31,10 @@ public class VisionProccesing {
     final int imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraHeight = 23.5;
+    final double cameraHeight = 20.75; //KATE THIS IS ALL I CHANGED
     final double elevation = 0;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 12.09;
+    final double cameraAngle = 17.2;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     
@@ -206,8 +206,8 @@ public class VisionProccesing {
         catch(Exception e)
         {
             System.out.println("Caught Exception in Network Table getNumber" + e);
-            currentAngle = 20;
-            currentSpeed = 2500;
+            //currentAngle = 20;
+            //currentSpeed = 2500;
         }
         
         System.out.println("currentAngle: " + currentAngle + "   currentSpeed: " + currentSpeed);
