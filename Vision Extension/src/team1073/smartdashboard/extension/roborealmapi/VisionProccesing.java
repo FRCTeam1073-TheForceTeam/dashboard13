@@ -122,7 +122,7 @@ public class VisionProccesing {
         //sends "optimal" speed and angle to robot
         
         sendCalcValues(targetAngle, targetRPM);
-        
+        //sendFakeValues();
         
         //Distance calculations
         
@@ -205,15 +205,15 @@ public class VisionProccesing {
         
         try
         {
-            //currentAngle = (float) visionTable.getNumber("currentAngle");
-            //currentSpeed = (float) visionTable.getNumber("currentSpeed");
-            currentAngle = 20;
-            currentSpeed = 2500;
-        
+            currentAngle = (float) visionTable.getNumber("currentAngle");
+            currentSpeed = (float) visionTable.getNumber("currentSpeed");
+            
         }
         catch(Exception e)
         {
             System.out.println("Caught Exception in Network Table getNumber" + e);
+            currentAngle = 20;
+            currentSpeed = 2500;
         }
         
         System.out.println("currentAngle: " + currentAngle + "   currentSpeed: " + currentSpeed);
@@ -223,8 +223,14 @@ public class VisionProccesing {
             
     private void sendCalcValues(double angle, double calcRPM)
     {
-        visionTable.putNumber("calcAngle", angle);
-        visionTable.putNumber("calcRPM", calcRPM);
+        visionTable.putNumber("calculatedAngle", angle);
+        visionTable.putNumber("calculatedVelocityRPM", calcRPM);
+    }
+    
+    private void sendFakeValues()
+    {
+        visionTable.putNumber("calculatedAngle", 34);
+        visionTable.putNumber("calculatedVelocityRPM", 2500);
     }
 
     
