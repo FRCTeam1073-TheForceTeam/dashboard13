@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import edu.wpi.first.smartdashboard.gui.StaticWidget;
 import edu.wpi.first.smartdashboard.properties.StringProperty;
 
-public class DiscCount extends StaticWidget{
+public class DiscCount extends Widget{
     
     private int count;
     private boolean isBottomFlipped;

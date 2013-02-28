@@ -14,7 +14,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
-public class ClimberStatus extends StaticWidget{
+public class ClimberStatus extends Widget{
     private boolean isClimberEngaged;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Climber Engaged", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};

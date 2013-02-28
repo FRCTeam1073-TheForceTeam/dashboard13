@@ -11,7 +11,7 @@ import java.awt.Graphics;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 
-public class CameraBorder extends StaticWidget{
+public class CameraBorder extends Widget{
     private boolean isOldImage;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Old Image", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};

@@ -20,7 +20,7 @@ import java.awt.Graphics2D;
  *
  * @author Kate
  */
-public class speedDisplay extends StaticWidget {
+public class speedDisplay extends Widget {
 public static final DataType[] TYPES = { DataType.NUMBER };
 
 private double actualValue = 0.0;

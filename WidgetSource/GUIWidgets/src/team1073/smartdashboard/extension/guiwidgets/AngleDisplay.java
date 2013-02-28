@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package team1073.smartdashboard.extension.guiwidget;
+package team1073.smartdashboard.extension.guiwidgets;
 
-import edu.wpi.first.smartdashboard.gui.StaticWidget;
+import edu.wpi.first.smartdashboard.gui.Widget;
 import edu.wpi.first.smartdashboard.properties.IntegerProperty;
 import edu.wpi.first.smartdashboard.properties.Property;
 import edu.wpi.first.smartdashboard.types.DataType;
@@ -18,7 +18,7 @@ import java.awt.Graphics2D;
  *
  * @author Kate
  */
-public class AngleDisplay extends StaticWidget{
+public class AngleDisplay extends Widget{
     
     
     //angles to display in degrees and radians

@@ -14,7 +14,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
-public class ShooterLockOn extends StaticWidget{
+public class ShooterLockOn extends Widget{
     private boolean isShooterLockedOn;
     public final BooleanProperty newVal = new BooleanProperty(this, "Is Shooter Locked On", false);
     public static final DataType[] TYPES = {DataType.BOOLEAN};
