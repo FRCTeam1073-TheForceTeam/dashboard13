@@ -1,14 +1,14 @@
-<head><version>2.48.20</version></head>
+<head><version>2.49.8</version></head>
 <Radial_Distortion>
   <scale>1000.0</scale>
-  <coeff_c>0.0014</coeff_c>
+  <coeff_c>0</coeff_c>
   <coeff_d>0.0</coeff_d>
   <center_x>0.5</center_x>
   <crop_image>FALSE</crop_image>
-  <coeff_b>-.48</coeff_b>
+  <coeff_b>.525</coeff_b>
   <center_y>0.5</center_y>
   <coeff_e>0.0</coeff_e>
-  <coeff_a>-1000</coeff_a>
+  <coeff_a>-1121</coeff_a>
 </Radial_Distortion>
 <Marker>
   <include_graphics>FALSE</include_graphics>
