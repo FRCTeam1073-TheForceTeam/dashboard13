@@ -17,7 +17,7 @@ import java.awt.Graphics2D;
  *
  * @author Devin
  */
-public class InfoBoxes extends Widget{
+public class InfoBoxes extends StaticWidget{
     
     public void setValue(Object value){
         repaint();
