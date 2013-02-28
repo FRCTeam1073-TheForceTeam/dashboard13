@@ -74,10 +74,11 @@ public class VisionProccesing {
         
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH, double offset)
     {  
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
         getCurrentValues();//gets actual valus from robot, see below
+        currentSpeed *= offset;
         
         //do processing and image overlaying here
         //Don't tell me what to do, Courtney!
