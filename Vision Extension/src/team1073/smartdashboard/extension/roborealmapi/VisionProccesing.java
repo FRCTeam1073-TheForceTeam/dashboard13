@@ -34,7 +34,7 @@ public class VisionProccesing {
     final double cameraHeight = 23.5;
     final double elevation = 0;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 20.5;
+    final double cameraAngle = 12.09;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     
@@ -43,6 +43,7 @@ public class VisionProccesing {
     final double targetCenter = 103.25;
     
     final double maxRPM = 3600;
+    
     
     //calibrated values for m1013
     final double cameraFieldOfView = 48.8;
@@ -54,6 +55,7 @@ public class VisionProccesing {
     
     //initializing variables from robot
     double distance = 0;
+    double rawDistance = 0;
     double targetAngle = 0;
     double targetRPM = 0;
     
@@ -94,7 +96,7 @@ public class VisionProccesing {
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
         
         System.out.println("raw distance: " + distance);
-        double rawDistance = distance;
+        rawDistance = distance;
         
         // correction
         if(!isHighGoal) {
@@ -186,9 +188,9 @@ public class VisionProccesing {
             // strings
             g.setColor(Color.WHITE);
             g.setFont(new Font("Matt Carr", Font.BOLD, 22));
-            g.drawString("RPM: " + Math.round(currentSpeed) + ", Angle: "
-                    + Math.round(currentAngle) + ", Target Angle:" 
-                    + Math.round(targetAngle) + ", Target type: " 
+            g.drawString("impactH: " + Math.round(impactH) + ", distance "
+                    + Math.round(distance) + ", rawdistance:" 
+                    + Math.round(rawDistance) + ", Target type: " 
                     + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
         }
                 
