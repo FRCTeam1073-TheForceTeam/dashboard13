@@ -42,8 +42,8 @@ public class Calcs {
 	private static final double ALPHA0 = -4;
 	
 	public double getHeight(double distance, double velocity, double theta) {
-		velocity = velocity * 6 * 2.54 * Math.PI * 1625 / (2 * 60 * 100*2550);
-		double y0 = (20.5+23*Math.sin(theta*Math.PI/180))/39.37;
+		velocity = velocity * 6 * 2.54 * Math.PI * 1818 / (2 * 60 * 100 * 2750);
+		double y0 = (20.5 + 23*Math.sin(theta * Math.PI / 180)) / 39.37;
 		double vx0 = velocity * Math.cos(theta * Math.PI / 180);
 		double vy0 = velocity * Math.sin(theta * (Math.PI) / 180);
 		double alpha = theta;

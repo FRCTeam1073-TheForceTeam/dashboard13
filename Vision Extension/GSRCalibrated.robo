@@ -1,0 +1,170 @@
+<head><version>2.49.8</version></head>
+<Radial_Distortion>
+  <scale>1000.0</scale>
+  <coeff_c>0</coeff_c>
+  <coeff_d>0.0</coeff_d>
+  <center_x>0.5</center_x>
+  <crop_image>FALSE</crop_image>
+  <coeff_b>.525</coeff_b>
+  <center_y>0.5</center_y>
+  <coeff_e>0.0</coeff_e>
+  <coeff_a>-1121</coeff_a>
+</Radial_Distortion>
+<Marker>
+  <include_graphics>FALSE</include_graphics>
+  <name>flat</name>
+  <revert_to>Current</revert_to>
+</Marker>
+<RGB_Filter>
+  <channel>2</channel>
+  <hysteresis>56</hysteresis>
+  <result_type>1</result_type>
+  <min_value>121</min_value>
+  <hue_value>85</hue_value>
+</RGB_Filter>
+<Blob_Filter>
+  <filters>
+    <tab:5/>
+    <tab:2>
+      <filter>
+        <create_array>0</create_array>
+        <ratio>3.10000</ratio>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0.9</weight_threshold>
+        <invert_count>0</invert_count>
+        <filter_id>63</filter_id>
+        <invert_threshold>0</invert_threshold>
+      </filter>
+    </tab:2>
+    <tab:4/>
+    <tab>
+      <filter:2>
+        <create_array>0</create_array>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0.2</weight_threshold>
+        <invert_count>0</invert_count>
+        <image>Source</image>
+        <filter_id>77</filter_id>
+        <invert_threshold>0</invert_threshold>
+      </filter:2>
+      <filter:4>
+        <create_array>0</create_array>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0</weight_threshold>
+        <invert_count>0</invert_count>
+        <object_coord>c320,240</object_coord>
+        <filter_id>25</filter_id>
+        <invert_threshold>0</invert_threshold>
+      </filter:4>
+      <filter:3>
+        <create_array>0</create_array>
+        <ratio>0.50000</ratio>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0</weight_threshold>
+        <invert_count>0</invert_count>
+        <filter_id>63</filter_id>
+        <invert_threshold>0</invert_threshold>
+      </filter:3>
+      <filter>
+        <create_array>0</create_array>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0</weight_threshold>
+        <invert_count>0</invert_count>
+        <filter_id>8</filter_id>
+        <invert_threshold>0</invert_threshold>
+        <minimum_size>1000</minimum_size>
+      </filter>
+    </tab>
+    <tab:6/>
+    <tab:3>
+      <filter>
+        <create_array>0</create_array>
+        <ratio>2.12000</ratio>
+        <count_threshold>0</count_threshold>
+        <weight_threshold>0.8</weight_threshold>
+        <invert_count>0</invert_count>
+        <filter_id>63</filter_id>
+        <invert_threshold>0</invert_threshold>
+      </filter>
+    </tab:3>
+  </filters>
+  <sort_array_on_y>TRUE</sort_array_on_y>
+  <largest_is_background>FALSE</largest_is_background>
+  <name>Filter</name>
+  <sort_array_on_x>TRUE</sort_array_on_x>
+  <show_weights>FALSE</show_weights>
+  <create_blob_array_variable>TRUE</create_blob_array_variable>
+</Blob_Filter>
+<Blob_Replace>
+  <thickness>1</thickness>
+  <color_index>5</color_index>
+  <fill_shape>TRUE</fill_shape>
+  <order_array_on_x>FALSE</order_array_on_x>
+  <shape_index>12</shape_index>
+  <order_array_on_y>FALSE</order_array_on_y>
+</Blob_Replace>
+<VBScript_Program>
+  <tab_size_index>1</tab_size_index>
+  <script>list = GetArrayVariable("BFR_COORDINATES")
+if isArray(list) then
+  if ubound(list) &gt; 0 then
+
+		targetPixelHeight = 0
+    targetSamples = 0
+
+    ' calibrated for an Axis camera
+    imageHeight = GetVariable("IMAGE_HEIGHT")
+  	cameraFieldOfView = 34.9
+		cameraAngle = 8.5
+	  targetHeight = 29
+	deltaH = 37
+	theta1 = (3.141592/180)*(cameraAngle/2)
+	theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1
+
+    ' grab list of coordinates from blob_replace
+	 	' note the array is sorted by previous module in a specific order
+    righty = list(1)
+    rightyy = list(7)
+    lefty = list(3)
+    leftyy = list(5)
+
+		' based on these two side lines get the center line height
+		' the center line is used since we want to aim to the center
+  	' of the target. This also removes any perspective distortion
+	  ' where the right or left size may be a couple inches closer
+		' or futher away from the camera
+  	targetPixelHeight = ((lefty - leftyy) + (righty - rightyy)) / 2
+
+	verticalPixelDisplacement = imageHeight - ((lefty + righty)/2)
+	alpha = atn((verticalPixelDisplacement - (imageHeight/2))*(tan(theta1+theta2)/240))
+
+write targetPixelHeight 
+
+    ' we can use a known distance to determine FOV if we don't know it
+	  ' measuredDistance = 10.0*12.0
+ 	  ' write "Calculated FOV " &amp; (((atan((((targetHeight*imageHeight)/targetPixelHeight)/2)/measuredDistance)*2.0)*180.0)/3.14159) &amp; vbCRLF
+
+    ' determine distance in inches
+    ' totalDistance = (((targetHeight*imageHeight)/targetPixelHeight)/2)/tan(((cameraFieldOfView*3.14159)/180.0)/2.0)
+		  totalDistance = deltaH/(tan(alpha+theta2-theta1))
+	
+		SetVariable "Distance", ((totalDistance*100)/12)/100
+		SetVariable "theta1", theta1
+		SetVariable "theta2", theta2
+		SetVariable "targetH", targetPixelHeight
+		SetVariable "righty", righty
+
+	end if
+end if
+</script>
+  <filename>.\distancecalcs.vbs</filename>
+  <source_mode>file</source_mode>
+</VBScript_Program>
+<Math>
+  <image2>Last</image2>
+  <function>5</function>
+  <divisor>1</divisor>
+  <image1>flat</image1>
+  <all_channels>TRUE</all_channels>
+  <bias>0</bias>
+</Math>
