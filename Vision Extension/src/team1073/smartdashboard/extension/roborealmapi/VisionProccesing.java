@@ -74,11 +74,10 @@ public class VisionProccesing {
         
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH, double offset)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH)
     {  
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
-        getCurrentValues();//gets actual valus from robot, see below
-        currentSpeed *= offset;
+        getCurrentValues();//gets actual valus from robot, see below.
         
         //do processing and image overlaying here
         //Don't tell me what to do, Courtney!
@@ -123,7 +122,7 @@ public class VisionProccesing {
         
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
-        impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle, cameraHeight);
+        impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle);
         int impactXPixel = 0;
         int impactYPixel = 0;
         
