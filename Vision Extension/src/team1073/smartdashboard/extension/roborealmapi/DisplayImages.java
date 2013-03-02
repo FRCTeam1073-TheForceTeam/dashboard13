@@ -25,10 +25,7 @@ public class DisplayImages extends StaticWidget{
     CameraThread task = null;
     BufferedImage image = null;
     VisionProccesing vision = null;
-    RR_API api = null;
-    
-    JSlider offset = new JSlider(JSlider.VERTICAL, 0, 100000, 100000);
-    
+    RR_API api = null;    
     
     @Override
     public void init() {
@@ -38,12 +35,6 @@ public class DisplayImages extends StaticWidget{
         //this.setPreferredSize(new Dimension(800, 600));
         this.setPreferredSize(new Dimension(640, 480));
         api = task.getApi();
-        
-        add(offset);
-        offset.setMajorTickSpacing(100000);
-	offset.setMinorTickSpacing(10000);
-	offset.setPaintTicks(true);
-        
 
         task.addPropertyChangeListener(new PropertyChangeListener()
             {
@@ -57,7 +48,7 @@ public class DisplayImages extends StaticWidget{
                             double underneathH = task.getUnderneathH();
                             double targetH = task.getTargetH();
                             try {
-                            image = vision.processImage(image, underneathH, targetRatio, targetH, (double)offset.getValue()/10000);//proccesing
+                            image = vision.processImage(image, underneathH, targetRatio, targetH);//proccesing
                             
                             }
                             catch(Exception e) {
