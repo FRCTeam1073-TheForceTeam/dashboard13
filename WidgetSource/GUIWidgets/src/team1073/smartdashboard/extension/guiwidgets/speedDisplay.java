@@ -62,7 +62,7 @@ public final DoubleProperty newVal = new DoubleProperty(this, "Calc Val", 0.0);
     
             Font font = new Font("Arial", Font.BOLD, 16);
             graphics.setFont(font);
-            g.drawString("Speed: " + Integer.toString(Math.abs((int)actualValue)), 47, 272);
+            g.drawString("Speed: " + Integer.toString(Math.abs((int)actualValue) * 37), 47, 272);
     }
    
         else { 
