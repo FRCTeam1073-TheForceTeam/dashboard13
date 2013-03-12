@@ -233,39 +233,31 @@ public class VisionProccesing {
     }
     
     
-//    public double[] optimize(double currentAngle, double currentRPM, double distance, boolean targetType){
-//        //targetType = isHighGoal, so true is high, false is mid
-//        final int targetHeight = isHighGoal?101:84;
-//        final int max = targetHeight + 2;
-//        final int min = targetHeight - 2;
-//        double[] optimal = new double[2];
-//        double testAngle = currentAngle;
-//        double testRPM = currentRPM;
-//        Calcs test = new Calcs();
-//      
-//        while(min > test.getHeight(testAngle, testRPM, distance) || test.getHeight(testAngle, testRPM, distance) > max){
-//            if (test.getHeight(testAngle, testRPM, distance) > max){
-//                testRPM -= 100;
-//                //if we're hitting too high, bring down RPM
-//            } else {
-//                //if we're hitting too low....
-//                if(test.getHeight(testAngle, testRPM, distance) < test.getHeight(testAngle - 1, testRPM, distance)){
-//                    testAngle--;
-//                    //if angle is too high, go down
-//                }else if (test.getHeight(testAngle + 1, testRPM, distance) > test.getHeight(testAngle, testRPM, distance)){
-//                    testAngle++;
-//                    //if angle is too low, go up
-//                } else {
-//                    testRPM += 100;
-//                    //otherwise crank dem wheels
-//                }
-//            }
-//        }
-//        
-//        optimal[0] = testAngle;
-//        optimal[1] = testRPM;
-//        return optimal;
-//    }
+    public double[] optimize(double currentAngle, double currentRPM, double distance, boolean targetType){
+        final int targetHeight = isHighGoal?101:84;
+        final int max = targetHeight + 2;
+        final int min = targetHeight - 2;
+        double[] optimal = new double[2];
+        double testAngle = currentAngle;
+        double testRPM = currentRPM;
+        Calcs test = new Calcs();
+        while(min > test.getHeight(testAngle, testRPM, distance) || test.getHeight(testAngle, testRPM, distance) > max){
+            if (test.getHeight(testAngle, testRPM, distance) > max){
+                testRPM -= 100;
+            } else {
+                if(test.getHeight(testAngle, testRPM, distance) < test.getHeight(testAngle - 1, testRPM, distance)){
+                    testAngle--;
+                }else if (test.getHeight(testAngle + 1, testRPM, distance) > test.getHeight(testAngle, testRPM, distance)){
+                    testAngle++;
+                } else {
+                    testRPM += 100;
+                }
+            }
+        }
+        optimal[0] = testAngle;
+        optimal[1] = testRPM;
+        return optimal;
+    }
 
     
 }

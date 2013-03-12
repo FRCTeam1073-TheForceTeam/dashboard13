@@ -105,57 +105,57 @@
 </Blob_Replace>
 <VBScript_Program>
   <tab_size_index>1</tab_size_index>
-  <script>list = GetArrayVariable("BFR_COORDINATES")
-if isArray(list) then
-  if ubound(list) &gt; 0 then
-
-		targetPixelHeight = 0
-    targetSamples = 0
-
-    ' calibrated for an Axis camera
-    imageHeight = GetVariable("IMAGE_HEIGHT")
-  	cameraFieldOfView = 34.9
-		cameraAngle = 8.5
-	  targetHeight = 29
-	deltaH = 37
-	theta1 = (3.141592/180)*(cameraAngle/2)
-	theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1
-
-    ' grab list of coordinates from blob_replace
-	 	' note the array is sorted by previous module in a specific order
-    righty = list(1)
-    rightyy = list(7)
-    lefty = list(3)
-    leftyy = list(5)
-
-		' based on these two side lines get the center line height
-		' the center line is used since we want to aim to the center
-  	' of the target. This also removes any perspective distortion
-	  ' where the right or left size may be a couple inches closer
-		' or futher away from the camera
-  	targetPixelHeight = ((lefty - leftyy) + (righty - rightyy)) / 2
-
-	verticalPixelDisplacement = imageHeight - ((lefty + righty)/2)
-	alpha = atn((verticalPixelDisplacement - (imageHeight/2))*(tan(theta1+theta2)/240))
-
-write targetPixelHeight 
-
-    ' we can use a known distance to determine FOV if we don't know it
-	  ' measuredDistance = 10.0*12.0
- 	  ' write "Calculated FOV " &amp; (((atan((((targetHeight*imageHeight)/targetPixelHeight)/2)/measuredDistance)*2.0)*180.0)/3.14159) &amp; vbCRLF
-
-    ' determine distance in inches
-    ' totalDistance = (((targetHeight*imageHeight)/targetPixelHeight)/2)/tan(((cameraFieldOfView*3.14159)/180.0)/2.0)
-		  totalDistance = deltaH/(tan(alpha+theta2-theta1))
-	
-		SetVariable "Distance", ((totalDistance*100)/12)/100
-		SetVariable "theta1", theta1
-		SetVariable "theta2", theta2
-		SetVariable "targetH", targetPixelHeight
-		SetVariable "righty", righty
-
-	end if
-end if
+  <script>list = GetArrayVariable("BFR_COORDINATES")
+if isArray(list) then
+  if ubound(list) &gt; 0 then
+
+		targetPixelHeight = 0
+    targetSamples = 0
+
+    ' calibrated for an Axis camera
+    imageHeight = GetVariable("IMAGE_HEIGHT")
+  	cameraFieldOfView = 34.9
+		cameraAngle = 8.5
+	  targetHeight = 29
+	deltaH = 37
+	theta1 = (3.141592/180)*(cameraAngle/2)
+	theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1
+
+    ' grab list of coordinates from blob_replace
+	 	' note the array is sorted by previous module in a specific order
+    righty = list(1)
+    rightyy = list(7)
+    lefty = list(3)
+    leftyy = list(5)
+
+		' based on these two side lines get the center line height
+		' the center line is used since we want to aim to the center
+  	' of the target. This also removes any perspective distortion
+	  ' where the right or left size may be a couple inches closer
+		' or futher away from the camera
+  	targetPixelHeight = ((lefty - leftyy) + (righty - rightyy)) / 2
+
+	verticalPixelDisplacement = imageHeight - ((lefty + righty)/2)
+	alpha = atn((verticalPixelDisplacement - (imageHeight/2))*(tan(theta1+theta2)/240))
+
+write targetPixelHeight 
+
+    ' we can use a known distance to determine FOV if we don't know it
+	  ' measuredDistance = 10.0*12.0
+ 	  ' write "Calculated FOV " &amp; (((atan((((targetHeight*imageHeight)/targetPixelHeight)/2)/measuredDistance)*2.0)*180.0)/3.14159) &amp; vbCRLF
+
+    ' determine distance in inches
+    ' totalDistance = (((targetHeight*imageHeight)/targetPixelHeight)/2)/tan(((cameraFieldOfView*3.14159)/180.0)/2.0)
+		  totalDistance = deltaH/(tan(alpha+theta2-theta1))
+	
+		SetVariable "Distance", ((totalDistance*100)/12)/100
+		SetVariable "theta1", theta1
+		SetVariable "theta2", theta2
+		SetVariable "targetH", targetPixelHeight
+		SetVariable "righty", righty
+
+	end if
+end if
 </script>
   <filename>.\distancecalcs.vbs</filename>
   <source_mode>file</source_mode>

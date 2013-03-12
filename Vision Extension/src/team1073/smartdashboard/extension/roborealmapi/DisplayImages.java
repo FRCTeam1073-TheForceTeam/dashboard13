@@ -25,8 +25,7 @@ public class DisplayImages extends StaticWidget{
     CameraThread task = null;
     BufferedImage image = null;
     VisionProccesing vision = null;
-    RR_API api = null;
-    
+    RR_API api = null;    
     
     @Override
     public void init() {

@@ -1,0 +1,48 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="10" y="408"/>
+		<width>1346</width>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.speedDisplay">
+		<location x="212" y="85"/>
+		<property name="Calc Val" value="150.0"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.speedDisplay">
+		<location x="19" y="87"/>
+		<property name="Calc Val" value="50.0"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidget.AngleDisplay">
+		<location x="185" y="-35"/>
+		<property name="Angle" value="86"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidget.AngleDisplay">
+		<location x="-12" y="-34"/>
+		<property name="Angle" value="40"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.ClimberStatus">
+		<location x="1151" y="110"/>
+		<property name="Is Climber Engaged" value="true"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.DiscCount">
+		<location x="936" y="-70"/>
+		<property name="Disc Counter String" value="4,0"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.ShooterLockOn">
+		<location x="986" y="110"/>
+		<property name="Is Shooter Locked On" value="true"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.CameraBorderSmall">
+		<location x="986" y="230"/>
+		<property name="Is Old Image" value="true"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.CameraBorder">
+		<location x="400" y="0"/>
+	</static-widget>
+	<static-widget class="team1073.smartdashboard.extension.guiwidgets.InfoBoxes">
+		<location x="-40" y="-40"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

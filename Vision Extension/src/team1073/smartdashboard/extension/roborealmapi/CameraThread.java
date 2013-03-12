@@ -6,6 +6,8 @@ package team1073.smartdashboard.extension.roborealmapi;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.SwingWorker;
 
 /**
@@ -88,8 +90,8 @@ public double getTargetH()
             
             if (imageCount % 10 == 0)
             {
-                //String filename = String.format("C:/images/test %5d.bmp", imageCount);
-                //ImageIO.write(image, "bmp", new File(filename));
+                String filename = String.format("C:/images/test %5d.bmp", imageCount);
+                ImageIO.write(image, "bmp", new File(filename));
             }
             // Change FPS here:
             Thread.sleep(200);
