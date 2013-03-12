@@ -31,16 +31,18 @@ public class VisionProccesing {
     final int imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraHeight = 23.5;
+    final double cameraHeight = 20.75;
     final double elevation = 0;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 12.09;
+    final double cameraAngle = 17.2;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     
     //final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
     final double cameraOffset = 0;
-    final double targetCenter = 103.25;
+    double targetCenter = 103.25;
+    final double midTargetCenter = 103.25;
+    final double highTargetCenter = 111;
     
     final double maxRPM = 3600;
     
@@ -71,14 +73,12 @@ public class VisionProccesing {
         //NetworkTable.setClientMode();
         //NetworkTable.setIPAddress("10.10.73.2");
         visionTable = NetworkTable.getTable("tracking");
-        
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH, double offset)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH)
     {  
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
         getCurrentValues();//gets actual valus from robot, see below
-        currentSpeed *= offset;
         
         //do processing and image overlaying here
         //Don't tell me what to do, Courtney!
@@ -91,6 +91,7 @@ public class VisionProccesing {
         }
                 
         deltaH = (isHighGoal?HIGH_DELTA_H:MIDDLE_DELTA_H);
+        targetCenter = (isHighGoal?highTargetCenter:midTargetCenter);
         
         double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
         distance = deltaH/(Math.tan(alpha + theta2 - theta1));
@@ -111,8 +112,12 @@ public class VisionProccesing {
         //System.out.println(distance + " , " + theta1 + " , " + theta2 + " , " + imageH + " , ");
         
         //calculate "optimal" shooter state
-        targetAngle = Math.atan(targetCenter/distance);
-        targetRPM = maxRPM;
+        //double[] target = optimize(currentAngle, currentSpeed, distance, isHighGoal);
+        double[] target = new double[2];
+        target[0] = 30;
+        target[1] = 2000;
+        targetAngle = target[0];
+        targetRPM = target[1];
         //distance = 350;
         //sends "optimal" speed and angle to robot
         
@@ -123,7 +128,7 @@ public class VisionProccesing {
         
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
-        impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle, cameraHeight);
+        impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle); //THIS LINE CHANGED!!!!!!!!!!!!!
         int impactXPixel = 0;
         int impactYPixel = 0;
         
@@ -206,8 +211,8 @@ public class VisionProccesing {
         catch(Exception e)
         {
             System.out.println("Caught Exception in Network Table getNumber" + e);
-            currentAngle = 20;
-            currentSpeed = 2500;
+//            currentAngle = 20;
+//            currentSpeed = 2500;
         }
         
         System.out.println("currentAngle: " + currentAngle + "   currentSpeed: " + currentSpeed);
@@ -226,6 +231,41 @@ public class VisionProccesing {
         visionTable.putNumber("calculatedAngle", 34);
         visionTable.putNumber("calculatedVelocityRPM", 2500);
     }
+    
+    
+//    public double[] optimize(double currentAngle, double currentRPM, double distance, boolean targetType){
+//        //targetType = isHighGoal, so true is high, false is mid
+//        final int targetHeight = isHighGoal?101:84;
+//        final int max = targetHeight + 2;
+//        final int min = targetHeight - 2;
+//        double[] optimal = new double[2];
+//        double testAngle = currentAngle;
+//        double testRPM = currentRPM;
+//        Calcs test = new Calcs();
+//      
+//        while(min > test.getHeight(testAngle, testRPM, distance) || test.getHeight(testAngle, testRPM, distance) > max){
+//            if (test.getHeight(testAngle, testRPM, distance) > max){
+//                testRPM -= 100;
+//                //if we're hitting too high, bring down RPM
+//            } else {
+//                //if we're hitting too low....
+//                if(test.getHeight(testAngle, testRPM, distance) < test.getHeight(testAngle - 1, testRPM, distance)){
+//                    testAngle--;
+//                    //if angle is too high, go down
+//                }else if (test.getHeight(testAngle + 1, testRPM, distance) > test.getHeight(testAngle, testRPM, distance)){
+//                    testAngle++;
+//                    //if angle is too low, go up
+//                } else {
+//                    testRPM += 100;
+//                    //otherwise crank dem wheels
+//                }
+//            }
+//        }
+//        
+//        optimal[0] = testAngle;
+//        optimal[1] = testRPM;
+//        return optimal;
+//    }
 
     
 }
