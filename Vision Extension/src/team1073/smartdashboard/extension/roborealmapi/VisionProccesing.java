@@ -31,10 +31,10 @@ public class VisionProccesing {
     final int imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraHeight = 20.75;
+    final double cameraHeight = 20.5;
     final double elevation = 0;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 15.2;
+    final double cameraAngle = 15.7;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     final double TARGET_WIDTH = 54;
@@ -98,11 +98,15 @@ public class VisionProccesing {
         double rightDistance = getDistance(rightUnderneathHX, rightUnderneathHY);
         double xOffset = (rightDistance*rightDistance - distance*distance - TARGET_WIDTH*TARGET_WIDTH) / (2*TARGET_WIDTH);
         double yOffset = Math.sqrt(distance*distance - xOffset*xOffset);
-        double angleOffset = Math.atan(xOffset/yOffset);
+        double angleOffset = Math.atan(xOffset/yOffset) * 180 / Math.PI;
         
         // correction
 
         System.out.println("distance: " + distance);
+        System.out.println("rightDistance: " + rightDistance);
+        System.out.println("xOffset: " + xOffset);
+        System.out.println("yOffset: " + yOffset);
+        System.out.println("angleOffset: " + angleOffset);
         
         //System.out.println(alpha + ", " + underneathH);
         
@@ -138,7 +142,7 @@ public class VisionProccesing {
         
         if (impactH == 0)
         {       
-            System.out.println("ALDSKFJASD;LKFJASLDK;FJASLDKFJASKLDFJASKLDFJ");
+           System.out.println("ALDSKFJASD;LKFJASLDK;FJASLDKFJASKLDFJASKLDFJ");
             return image;
         } else {
         //finding Y coordinate (Anish version)
@@ -170,8 +174,6 @@ public class VisionProccesing {
     
     public BufferedImage drawing(BufferedImage image, int X, int Y) 
     {
-        if (true)
-        {
             Graphics g = image.getGraphics();
 
             //reticle Parameters
@@ -187,8 +189,7 @@ public class VisionProccesing {
             g.drawString("impactH: " + Math.round(impactH) + ", distance "
                     + Math.round(distance) + ", Target type: " 
                     + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
-        }
-                
+            
         return image;
     }
     
@@ -202,8 +203,11 @@ public class VisionProccesing {
         
         try
         {
-            currentAngle = (float) visionTable.getNumber("currentAngle");
-            currentSpeed = (float) visionTable.getNumber("currentSpeed");
+//            currentAngle = (float) visionTable.getNumber("currentAngle");
+//            currentSpeed = (float) visionTable.getNumber("currentSpeed");
+  
+            currentAngle = 30;
+            currentSpeed = 2800;
             
         }
         catch(Exception e)
@@ -259,7 +263,7 @@ public class VisionProccesing {
     
     private double getDistance(double x, double y) {     
         double d = deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1));
-        return d/Math.cos(Math.atan(((x-imageW/2)*Math.tan(theta1+theta2))/240));
+        return (d/Math.cos(Math.atan(((x-imageW/2)*Math.tan(theta1+theta2))/240)));
         
     }
 

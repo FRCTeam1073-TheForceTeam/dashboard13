@@ -101,11 +101,11 @@ public double getTargetRatio()
             System.out.println("Image Count:" + imageCount);
             setProgress(imageCount % 99);
             
-            if (imageCount % 10 == 0)
-            {
-                String filename = String.format("C:/images/test %5d.bmp", imageCount);
-                ImageIO.write(image, "bmp", new File(filename));
-            }
+//            if (imageCount % 10 == 0)
+//            {
+//                String filename = String.format("C:/images/test %5d.bmp", imageCount);
+//                ImageIO.write(image, "bmp", new File(filename));
+//            }
             // Change FPS here:
             Thread.sleep(200);
         }
