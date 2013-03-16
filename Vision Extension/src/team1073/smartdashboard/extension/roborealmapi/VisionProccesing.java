@@ -34,7 +34,7 @@ public class VisionProccesing {
     final double cameraHeight = 20.75;
     final double elevation = 0;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 17.2;
+    final double cameraAngle = 15.2;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     
@@ -75,7 +75,7 @@ public class VisionProccesing {
         visionTable = NetworkTable.getTable("tracking");
     }
 
-    public BufferedImage processImage(BufferedImage rawImage, double underneathH, double targetRatio, double targetH)
+    public BufferedImage processImage(BufferedImage rawImage, double underneathHX, double underneathHY, double targetRatio, double rightUnderneathHX, double rightUnderneathHY)
     {  
         image = rawImage; //not neccesary, but ok as a backup in case we want to use in different functions
         getCurrentValues();//gets actual valus from robot, see below
@@ -92,9 +92,8 @@ public class VisionProccesing {
                 
         deltaH = (isHighGoal?HIGH_DELTA_H:MIDDLE_DELTA_H);
         targetCenter = (isHighGoal?highTargetCenter:midTargetCenter);
-        
-        double alpha = Math.atan((((underneathH - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2)));        
-        distance = deltaH/(Math.tan(alpha + theta2 - theta1));
+                
+        distance = getDistance(underneathHX, underneathHY);
         
         // correction
 
@@ -147,12 +146,6 @@ public class VisionProccesing {
         double three = 0 - Math.atan(deltaH2 / distance) + theta2 - theta1;
         impactYPixel = imageH - ((int) ((imageH/2) - (zero * Math.tan(three))));
             
-            
-        //finding Y coodrinate (Michael version)
-        //impactYPixel = (int)((targetH/(deltaH+cameraHeight))*(impactH-deltaH-cameraHeight)+underneathH);
-        
-        
-        
         System.out.println("distance:  " + distance + "\nimpactH:  " + impactH+ "\nimpactYPixel:  " + impactYPixel);
         //System.out.println("underneathH:  " + underneathH);
         //System.out.println("delataH2:  " + deltaH2);
@@ -257,6 +250,12 @@ public class VisionProccesing {
         optimal[0] = testAngle;
         optimal[1] = testRPM;
         return optimal;
+    }
+    
+    private double getDistance(double x, double y) {     
+        double d = deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1));
+        return d/Math.cos(Math.atan(((x-imageW/2)*Math.tan(theta1+theta2))/240));
+        
     }
 
     

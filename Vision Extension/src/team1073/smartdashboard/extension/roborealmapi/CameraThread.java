@@ -19,9 +19,11 @@ public class CameraThread extends SwingWorker<BufferedImage, BufferedImage> {
     RR_API roboApi;
     BufferedImage savedImage = null;
     int imageCount = 0;
-    double underneathH;
+    double underneathHY;
+    double underneathHX;
+    double rightUnderneathHY;
+    double rightUnderneathHX;
     double targetRatio;
-    double targetH;
     
 CameraThread()
 {
@@ -39,18 +41,29 @@ public BufferedImage getSavedImage()
 {
     return savedImage;
 }
-public double getUnderneathH()
+public double getUnderneathHY()
 {
-    return underneathH;
+    return underneathHY;
 }
+
+public double getUnderneathHX()
+{
+    return underneathHX;
+}
+
+public double getRightUnderneathHY()
+{
+    return rightUnderneathHY;
+}
+
+public double getRightUnderneathHX()
+{
+    return rightUnderneathHX;
+}
+
 public double getTargetRatio()
 {
     return targetRatio;
-}
-
-public double getTargetH()
-{
-    return targetH;
 }
         
     public BufferedImage displayImage() {
@@ -120,10 +133,12 @@ public double getTargetH()
 //        System.out.println(values[1]);
 //        values[2] = Double.parseDouble(api.getVariable("IMAGE_HEIGHT"));
 //        System.out.println(values[2]);
-          underneathH = Double.parseDouble(roboApi.getVariable("underneathH"));
+          underneathHX = Double.parseDouble(roboApi.getVariable("underneathHX"));
+          underneathHY = Double.parseDouble(roboApi.getVariable("underneathHY"));
+          rightUnderneathHX = Double.parseDouble(roboApi.getVariable("rightUnderneathHX"));
+          rightUnderneathHY = Double.parseDouble(roboApi.getVariable("rightUnderneathHY"));
           targetRatio = Double.parseDouble(roboApi.getVariable("targetRatio"));
-          targetH = Double.parseDouble(roboApi.getVariable("targetH"));
-           if(roboApi.getVariable("targetRatio") == null) {
+          if(roboApi.getVariable("targetRatio") == null) {
                targetRatio = 0;
            }
 //        System.out.println(values[3]);

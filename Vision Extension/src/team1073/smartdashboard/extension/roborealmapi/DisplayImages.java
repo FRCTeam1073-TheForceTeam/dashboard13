@@ -47,10 +47,12 @@ public class DisplayImages extends StaticWidget{
                         {
                             image = task.getSavedImage();
                             double targetRatio = task.getTargetRatio();
-                            double underneathH = task.getUnderneathH();
-                            double targetH = task.getTargetH();
+                            double underneathHX = task.getUnderneathHX();
+                            double underneathHY = task.getUnderneathHY();
+                            double rightUnderneathHX = task.getRightUnderneathHX();
+                            double rightUnderneathHY = task.getRightUnderneathHY();
                             try {
-                            image = vision.processImage(image, underneathH, targetRatio, targetH);//proccesing
+                            image = vision.processImage(image, underneathHX, underneathHY, targetRatio, rightUnderneathHX, rightUnderneathHY);//proccesing
                             
                             }
                             catch(Exception e) {
