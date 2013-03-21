@@ -68,6 +68,9 @@ public class VisionProccesing {
     double impactH = 0;
     boolean isHighGoal = false;
     
+    // random constant
+    final double k = (imageW/(2*Math.tan(cameraFieldOfView/2))) * (imageW/(2*Math.tan(cameraFieldOfView/2)));
+    
     VisionProccesing()
     {
         //NetworkTable.setTeam(1073);
@@ -261,9 +264,8 @@ public class VisionProccesing {
         return optimal;
     }
     
-    private double getDistance(double x, double y) {     
-        double d = deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1));
-        return (d/Math.cos(Math.atan(((x-imageW/2)*Math.tan(theta1+theta2))/240)));
+    private double getDistance(double x, double y) {
+        return ((deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1)))/k)*Math.sqrt((x-imageW/2)*(x-imageW/2)-k);
         
     }
 
