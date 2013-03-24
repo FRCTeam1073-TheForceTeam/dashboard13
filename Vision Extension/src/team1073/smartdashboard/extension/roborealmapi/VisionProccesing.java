@@ -32,9 +32,9 @@ public class VisionProccesing {
     
     //robot or situation dependent variables
     final double cameraHeight = 20.5;
-    final double elevation = 0;
+    final double elevation = 34.5;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 15.7;
+    final double cameraAngle = 15.3;//15.7;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     final double TARGET_WIDTH = 54;
@@ -53,8 +53,8 @@ public class VisionProccesing {
     final double cameraHorizontalView = 67;
    
     //calculated values for making distance calcs easier
-    final double theta1 = (3.141592/180)*(cameraAngle/2);
-    final double theta2 = ((3.141592/180)*(cameraFieldOfView/2)) - theta1;
+    final double theta1 = (Math.PI/180)*(cameraAngle/2);
+    final double theta2 = ((Math.PI/180)*(cameraFieldOfView/2)) - theta1;
     
     //initializing variables from robot
     double distance = 0;
@@ -69,7 +69,7 @@ public class VisionProccesing {
     boolean isHighGoal = false;
     
     // random constant
-    final double k = (imageW/(2*Math.tan(cameraFieldOfView/2))) * (imageW/(2*Math.tan(cameraFieldOfView/2)));
+    final double k = imageW/(((2*Math.tan((Math.PI/180)*cameraHorizontalView/2)))) * (imageW/(2*Math.tan((Math.PI/180)*cameraHorizontalView/2)));
     
     VisionProccesing()
     {
@@ -143,11 +143,11 @@ public class VisionProccesing {
         int impactXPixel = 0;
         int impactYPixel = 0;
         
-        if (impactH == 0)
-        {       
-           System.out.println("ALDSKFJASD;LKFJASLDK;FJASLDKFJASKLDFJASKLDFJ");
-            return image;
-        } else {
+//        if (impactH == 0)
+//        {       
+//           System.out.println("ALDSKFJASD;LKFJASLDK;FJASLDKFJASKLDFJASKLDFJ");
+//            return image;
+//        } else {
         //finding Y coordinate (Anish version)
           double deltaH2 = impactH - cameraHeight - elevation;
 //        double numerator = Math.tan (Math.atan(deltaH2 / (distance)) + theta2 - theta1);
@@ -172,7 +172,7 @@ public class VisionProccesing {
         
         //draws reticle
         return drawing(image, impactXPixel, impactYPixel);
-        }
+        
     }
     
     public BufferedImage drawing(BufferedImage image, int X, int Y) 
@@ -210,7 +210,7 @@ public class VisionProccesing {
 //            currentSpeed = (float) visionTable.getNumber("currentSpeed");
   
             currentAngle = 30;
-            currentSpeed = 2800;
+            currentSpeed = 4000;
             
         }
         catch(Exception e)
@@ -265,7 +265,9 @@ public class VisionProccesing {
     }
     
     private double getDistance(double x, double y) {
-        return ((deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1)))/k)*Math.sqrt((x-imageW/2)*(x-imageW/2)-k);
+        double d = (deltaH/(Math.tan(Math.atan((((y - (imageH/2))*(Math.tan(theta1+theta2)))/(imageH/2))) + theta2 - theta1)));
+        System.out.println(Math.sqrt(k));
+        return ((d/Math.sqrt(k))*Math.sqrt((x-imageW/2)*(x-imageW/2)+k));
         
     }
 
