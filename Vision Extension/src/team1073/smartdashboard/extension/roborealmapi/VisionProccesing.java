@@ -10,7 +10,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
-
+import java.awt.image.ImageObserver;
+import javax.imageio.*;
+import java.io.File;
+import java.io.IOException;
 /**
  *
  * @author Greg
@@ -139,7 +142,8 @@ public class VisionProccesing {
         
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
-        impactH = 39.37 * calc.getHeight(distance / 39.37, currentSpeed, currentAngle); //THIS LINE CHANGED!!!!!!!!!!!!!
+        double reticleDistance = yOffset / Math.tan(angleOffset * Math.PI / 180);
+        impactH = 39.37 * calc.getHeight(reticleDistance / 39.37, currentSpeed, currentAngle); //THIS LINE CHANGED!!!!!!!!!!!!!
         int impactXPixel = 0;
         int impactYPixel = 0;
         
@@ -155,10 +159,10 @@ public class VisionProccesing {
 //        impactYPixel = (int) ((imageH/2) * (1 - (numerator)/(denominator))); 
   
         double zero = imageH/(2 * Math.tan(theta1 + theta2));   //BADASS MOFO UP IN THIS BITCH.
-        double three = 0 - Math.atan(deltaH2 / distance) + theta2 - theta1;
+        double three = 0 - Math.atan(deltaH2 / reticleDistance) + theta2 - theta1;
         impactYPixel = imageH - ((int) ((imageH/2) - (zero * Math.tan(three))));
             
-        System.out.println("distance:  " + distance + "\nimpactH:  " + impactH+ "\nimpactYPixel:  " + impactYPixel);
+        System.out.println("reticleDistance:  " + reticleDistance + "\nimpactH:  " + impactH+ "\nimpactYPixel:  " + impactYPixel);
         //System.out.println("underneathH:  " + underneathH);
         //System.out.println("delataH2:  " + deltaH2);
         //System.out.println("e:  " + zero);
@@ -168,7 +172,7 @@ public class VisionProccesing {
         
         
         //finding X coordinate
-        impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (distance * Math.tan(cameraHorizontalView / 2)))));
+        impactXPixel = (int) ((imageW/2) * (1+(cameraOffset / (reticleDistance * Math.tan(cameraHorizontalView / 2)))));
         
         //draws reticle
         return drawing(image, impactXPixel, impactYPixel);
@@ -178,6 +182,15 @@ public class VisionProccesing {
     public BufferedImage drawing(BufferedImage image, int X, int Y) 
     {
             Graphics g = image.getGraphics();
+ 
+            BufferedImage img = null;
+//                try {
+//                    img = ImageIO.read(new File("strawberry.jpg"));
+//                } catch (IOException e) {
+//                }
+//                
+//            
+//            g.drawImage(img, Y, X, iob);
 
             //reticle Parameters
             int radius = 10;
