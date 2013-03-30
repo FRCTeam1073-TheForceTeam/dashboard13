@@ -14,6 +14,9 @@ import java.awt.image.ImageObserver;
 import javax.imageio.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Greg
@@ -183,21 +186,27 @@ public class VisionProccesing {
     {
             Graphics g = image.getGraphics();
  
+            canReadExtension(".png");
             BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
+        } catch (IOException ex) { 
+            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            g.drawImage(img, X-18, Y-18, null);
 //                try {
 //                    img = ImageIO.read(new File("strawberry.jpg"));
 //                } catch (IOException e) {
 //                }
-//                
-//            
-//            g.drawImage(img, Y, X, iob);
+                
+//            g.drawImage(img, X, Y);
 
             //reticle Parameters
-            int radius = 10;
-            g.setColor(Color.RED);
-            g.drawLine(X - radius, Y, X + radius, Y);
-            g.drawLine(X, Y - radius, X, Y + radius);
-            g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
+//            int radius = 10;
+//            g.setColor(Color.RED);
+//            g.drawLine(X - radius, Y, X + radius, Y);
+//            g.drawLine(X, Y - radius, X, Y + radius);
+//            g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
 
             // strings
             g.setColor(Color.WHITE);
@@ -284,5 +293,9 @@ public class VisionProccesing {
         
     }
 
+      public static boolean canReadExtension(String fileExt) {
+            Iterator iter = ImageIO.getImageReadersBySuffix(fileExt);
+        return iter.hasNext();
+  }
     
 }
