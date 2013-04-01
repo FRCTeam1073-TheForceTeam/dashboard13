@@ -40,7 +40,7 @@ public class VisionProccesing {
     final double cameraHeight = 20.5;
     final double elevation = 34.5;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 15.3;//15.7;
+    final double cameraAngle = 17.2;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     final double TARGET_WIDTH = 54;
@@ -73,6 +73,7 @@ public class VisionProccesing {
     double targetRatio = 0;
     double impactH = 0;
     boolean isHighGoal = false;
+    boolean isInTarget = false;
     
     // random constant
     final double k = imageW/(((2*Math.tan((Math.PI/180)*cameraHorizontalView/2)))) * (imageW/(2*Math.tan((Math.PI/180)*cameraHorizontalView/2)));
@@ -108,6 +109,7 @@ public class VisionProccesing {
         double xOffset = (rightDistance*rightDistance - distance*distance - TARGET_WIDTH*TARGET_WIDTH) / (2*TARGET_WIDTH);
         double yOffset = Math.sqrt(distance*distance - xOffset*xOffset);
         double angleOffset = Math.atan(xOffset/yOffset) * 180 / Math.PI;
+        double targetOffset = Math.tan(angleOffset * Math.PI / 180) * yOffset;
         
         // correction
 
@@ -132,7 +134,7 @@ public class VisionProccesing {
         //double[] target = optimize(currentAngle, currentSpeed, distance, isHighGoal);
         double[] target = new double[2];
         target[0] = 30;
-        target[1] = 2000;
+        target[1] = 4000;
         targetAngle = target[0];
         targetRPM = target[1];
         //distance = 350;
@@ -149,6 +151,11 @@ public class VisionProccesing {
         impactH = 39.37 * calc.getHeight(reticleDistance / 39.37, currentSpeed, currentAngle); //THIS LINE CHANGED!!!!!!!!!!!!!
         int impactXPixel = 0;
         int impactYPixel = 0;
+        
+        isInTarget = (((isHighGoal && impactH > highTargetCenter - 6 && impactH < highTargetCenter + 6) 
+                || (!isHighGoal && impactH > midTargetCenter - 10.5 && impactH < midTargetCenter + 10.5)) 
+                && (xOffset - targetOffset > -27 && xOffset - targetOffset < 27));
+         
         
 //        if (impactH == 0)
 //        {       
@@ -187,13 +194,24 @@ public class VisionProccesing {
             Graphics g = image.getGraphics();
  
             canReadExtension(".png");
-            BufferedImage img = null;
+            BufferedImage keenan = null;
         try {
-            img = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
+            keenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
         } catch (IOException ex) { 
             Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
         }
-            g.drawImage(img, X-18, Y-18, null);
+        BufferedImage redkeenan = null;
+        try {
+            redkeenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/redkeenan.png"));
+        } catch (IOException ex) { 
+            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(isInTarget){
+            g.drawImage(redkeenan, X-18, Y-18, null);
+        } else{
+            g.drawImage(keenan, X-18, Y-18, null);
+        }
 //                try {
 //                    img = ImageIO.read(new File("strawberry.jpg"));
 //                } catch (IOException e) {
@@ -231,8 +249,8 @@ public class VisionProccesing {
 //            currentAngle = (float) visionTable.getNumber("currentAngle");
 //            currentSpeed = (float) visionTable.getNumber("currentSpeed");
   
-            currentAngle = 30;
-            currentSpeed = 4000;
+            currentAngle = 50;
+            currentSpeed = 0;
             
         }
         catch(Exception e)
