@@ -15,7 +15,10 @@ if isArray(list) then
 		SetVariable "underneathHX", ((rightBottomX + leftBottomX)/2)
 		SetVariable "rightUnderneathHY", rightBottomY
 		SetVariable "rightUnderneathHX", rightBottomX
-		SetVariable "targetRatio", (rightTopX - leftTopx + rightBottomX - leftBottomX)/(rightTopY - rightBottomY + leftTopY - leftBottomY)
-
+		if rightTopY - rightBottomY + leftTopY - leftBottomY <= 0 then
+			SetVariable "targetRatio", 0
+		else
+			SetVariable "targetRatio", (rightTopX - leftTopx + rightBottomX - leftBottomX)/(rightTopY - rightBottomY + leftTopY - leftBottomY)
+		end if
 	end if
 end if

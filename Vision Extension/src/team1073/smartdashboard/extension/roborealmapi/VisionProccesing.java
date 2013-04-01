@@ -147,7 +147,7 @@ public class VisionProccesing {
         
         //find point of impact based on current shooter state
         Calcs calc = new Calcs();
-        double reticleDistance = yOffset / Math.tan(angleOffset * Math.PI / 180);
+        double reticleDistance = yOffset / Math.cos(angleOffset * Math.PI / 180);
         impactH = 39.37 * calc.getHeight(reticleDistance / 39.37, currentSpeed, currentAngle); //THIS LINE CHANGED!!!!!!!!!!!!!
         int impactXPixel = 0;
         int impactYPixel = 0;
