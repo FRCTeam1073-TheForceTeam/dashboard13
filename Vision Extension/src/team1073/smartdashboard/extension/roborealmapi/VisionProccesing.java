@@ -37,10 +37,10 @@ public class VisionProccesing {
     final int imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraHeight = 20.5;
+    final double cameraHeight = 19.75;
     final double elevation = 34.5;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 17.2;
+    final double cameraAngle = 14.24;//17.9;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     final double TARGET_WIDTH = 54;
@@ -154,7 +154,8 @@ public class VisionProccesing {
         
         isInTarget = (((isHighGoal && impactH > highTargetCenter - 6 && impactH < highTargetCenter + 6) 
                 || (!isHighGoal && impactH > midTargetCenter - 10.5 && impactH < midTargetCenter + 10.5)) 
-                && (xOffset - targetOffset > -27 && xOffset - targetOffset < 27));
+                && ((xOffset - targetOffset) > -27 && (xOffset - targetOffset) < 27));
+        System.out.println("BLARJAKSJDJA " + targetOffset);
          
         
 //        if (impactH == 0)
@@ -196,13 +197,15 @@ public class VisionProccesing {
             canReadExtension(".png");
             BufferedImage keenan = null;
         try {
-            keenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
+            //keenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
+            keenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/keenan.png"));
         } catch (IOException ex) { 
             Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
         }
         BufferedImage redkeenan = null;
         try {
-            redkeenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/redkeenan.png"));
+            //redkeenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/redkeenan.png"));
+            redkeenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/redkeenan.png"));
         } catch (IOException ex) { 
             Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -249,8 +252,8 @@ public class VisionProccesing {
 //            currentAngle = (float) visionTable.getNumber("currentAngle");
 //            currentSpeed = (float) visionTable.getNumber("currentSpeed");
   
-            currentAngle = 50;
-            currentSpeed = 0;
+            currentAngle = 20;
+            currentSpeed = 3500;
             
         }
         catch(Exception e)
