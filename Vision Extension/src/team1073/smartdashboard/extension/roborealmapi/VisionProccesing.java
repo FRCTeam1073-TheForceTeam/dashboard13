@@ -64,6 +64,7 @@ public class VisionProccesing {
     
     //initializing variables from robot
     double distance = 0;
+    double rightDistance = 0;
     double targetAngle = 0;
     double targetRPM = 0;
     
@@ -74,7 +75,7 @@ public class VisionProccesing {
     double impactH = 0;
     boolean isHighGoal = false;
     boolean isInTarget = false;
-    
+        
     // random constant
     final double k = imageW/(((2*Math.tan((Math.PI/180)*cameraHorizontalView/2)))) * (imageW/(2*Math.tan((Math.PI/180)*cameraHorizontalView/2)));
     
@@ -105,11 +106,11 @@ public class VisionProccesing {
         targetCenter = (isHighGoal?highTargetCenter:midTargetCenter);
                 
         distance = getDistance(underneathHX, underneathHY);
-        double rightDistance = getDistance(rightUnderneathHX, rightUnderneathHY);
-        double xOffset = (rightDistance*rightDistance - distance*distance - TARGET_WIDTH*TARGET_WIDTH) / (2*TARGET_WIDTH);
+        rightDistance = getDistance(rightUnderneathHX, rightUnderneathHY);
+        double xOffset = (rightDistance*rightDistance - distance*distance - (TARGET_WIDTH*TARGET_WIDTH/4)) / (TARGET_WIDTH);
         double yOffset = Math.sqrt(distance*distance - xOffset*xOffset);
-        double angleOffset = Math.atan(xOffset/yOffset) * 180 / Math.PI;
-        double targetOffset = Math.tan(angleOffset * Math.PI / 180) * yOffset;
+        double angleOffset = Math.atan((underneathHX - (imageW/2))/Math.sqrt(k)) * 180 / Math.PI;
+        double reticleOffset = Math.tan(angleOffset * Math.PI / 180) * yOffset;
         
         // correction
 
@@ -119,16 +120,7 @@ public class VisionProccesing {
         System.out.println("yOffset: " + yOffset);
         System.out.println("angleOffset: " + angleOffset);
         
-        //System.out.println(alpha + ", " + underneathH);
-        
-//        System.out.println("distance:  " + distance);
-//        System.out.println("underneathH:  " + underneathH);
-//        System.out.println("alpha:  " + alpha);
-//        System.out.println("theta1:  " + theta1);
-//        System.out.println("theta2:  " + theta2);
-//        System.out.println("imageH:  " + imageH);
-        
-        //System.out.println(distance + " , " + theta1 + " , " + theta2 + " , " + imageH + " , ");
+
         
         //calculate "optimal" shooter state
         //double[] target = optimize(currentAngle, currentSpeed, distance, isHighGoal);
@@ -154,8 +146,8 @@ public class VisionProccesing {
         
         isInTarget = (((isHighGoal && impactH > highTargetCenter - 6 && impactH < highTargetCenter + 6) 
                 || (!isHighGoal && impactH > midTargetCenter - 10.5 && impactH < midTargetCenter + 10.5)) 
-                && ((xOffset - targetOffset) > -27 && (xOffset - targetOffset) < 27));
-        System.out.println("BLARJAKSJDJA " + targetOffset);
+                && ((xOffset - reticleOffset) > -27 && (xOffset - reticleOffset) < 27));
+        System.out.println("BLARJAKSJDJA " + reticleOffset);
          
         
 //        if (impactH == 0)
