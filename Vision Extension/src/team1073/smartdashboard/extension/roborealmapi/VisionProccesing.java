@@ -6,7 +6,7 @@ package team1073.smartdashboard.extension.roborealmapi;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
@@ -40,7 +40,7 @@ public class VisionProccesing {
     final double cameraHeight = 19.75;
     final double elevation = 34.5;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 14.24;//17.9;
+    final double cameraAngle = 14.2;//17.9;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
     final double TARGET_WIDTH = 54;
@@ -107,7 +107,7 @@ public class VisionProccesing {
                 
         distance = getDistance(underneathHX, underneathHY);
         rightDistance = getDistance(rightUnderneathHX, rightUnderneathHY);
-        double xOffset = (rightDistance*rightDistance - distance*distance - (TARGET_WIDTH*TARGET_WIDTH/4)) / (TARGET_WIDTH);
+        double xOffset = (rightDistance*rightDistance - distance*distance - (TARGET_WIDTH*TARGET_WIDTH)) / (2*TARGET_WIDTH);
         double yOffset = Math.sqrt(distance*distance - xOffset*xOffset);
         double angleOffset = Math.atan((underneathHX - (imageW/2))/Math.sqrt(k)) * 180 / Math.PI;
         double reticleOffset = Math.tan(angleOffset * Math.PI / 180) * yOffset;
@@ -144,10 +144,13 @@ public class VisionProccesing {
         int impactXPixel = 0;
         int impactYPixel = 0;
         
-        isInTarget = (((isHighGoal && impactH > highTargetCenter - 6 && impactH < highTargetCenter + 6) 
-                || (!isHighGoal && impactH > midTargetCenter - 10.5 && impactH < midTargetCenter + 10.5)) 
-                && ((xOffset - reticleOffset) > -27 && (xOffset - reticleOffset) < 27));
-        System.out.println("BLARJAKSJDJA " + reticleOffset);
+        isInTarget = (((isHighGoal && Math.abs(impactH - highTargetCenter) <= 6)
+                || (!isHighGoal && Math.abs(impactH - midTargetCenter) <= 10.5)) 
+                && Math.abs(xOffset - reticleOffset) <= 27);
+        System.out.println("BLARJAKSJDJA " + reticleOffset + " sf " + xOffset);
+        System.out.println("Bool 1: " + (((isHighGoal && Math.abs(impactH - highTargetCenter) <= 6) 
+                || (!isHighGoal && Math.abs(impactH - midTargetCenter) <= 10.5)) ? "TRUE" : "FALSE") 
+                + ", Bool 2: " + (Math.abs(xOffset - reticleOffset) <= 27 ? "TRUE" : "FALSE"));
          
         
 //        if (impactH == 0)
@@ -185,28 +188,28 @@ public class VisionProccesing {
     public BufferedImage drawing(BufferedImage image, int X, int Y) 
     {
             Graphics g = image.getGraphics();
- 
-            canReadExtension(".png");
-            BufferedImage keenan = null;
-        try {
-            //keenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
-            keenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/keenan.png"));
-        } catch (IOException ex) { 
-            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        BufferedImage redkeenan = null;
-        try {
-            //redkeenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/redkeenan.png"));
-            redkeenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/redkeenan.png"));
-        } catch (IOException ex) { 
-            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(isInTarget){
-            g.drawImage(redkeenan, X-18, Y-18, null);
-        } else{
-            g.drawImage(keenan, X-18, Y-18, null);
-        }
+            Graphics2D g2 = (Graphics2D) g;
+//            canReadExtension(".png");
+//            BufferedImage keenan = null;
+//        try {
+//            //keenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/keenan.png"));
+//            keenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/keenan.png"));
+//        } catch (IOException ex) { 
+//            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        BufferedImage redkeenan = null;
+//        try {
+//            //redkeenan = ImageIO.read(new File("C:/WindRiver/workspace/dashboard13/Vision Extension/redkeenan.png"));
+//            redkeenan = ImageIO.read(new File("C:/Users/Michael/Documents/GitHub/dashboard13/Vision Extension/redkeenan.png"));
+//        } catch (IOException ex) { 
+//            Logger.getLogger(VisionProccesing.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        if(isInTarget){
+//            g.drawImage(redkeenan, X-18, Y-18, null);
+//        } else{
+//            g.drawImage(keenan, X-18, Y-18, null);
+//        }
 //                try {
 //                    img = ImageIO.read(new File("strawberry.jpg"));
 //                } catch (IOException e) {
@@ -215,16 +218,19 @@ public class VisionProccesing {
 //            g.drawImage(img, X, Y);
 
             //reticle Parameters
-//            int radius = 10;
-//            g.setColor(Color.RED);
-//            g.drawLine(X - radius, Y, X + radius, Y);
-//            g.drawLine(X, Y - radius, X, Y + radius);
-//            g.drawOval(X-radius, Y-radius, 2*radius, 2*radius);
-
+            int radius = 10;
+            g2.setStroke(new BasicStroke(4));
+            g2.setColor(Color.RED);
+            if(isInTarget){
+                g2.fillOval(X, Y, 2 * radius, 2 * radius);
+            }else{
+                g2.drawLine(X - radius, Y - radius, X + radius, Y + radius);
+                g2.drawLine(X - radius, Y + radius, X + radius, Y - radius);
+            }
             // strings
-            g.setColor(Color.WHITE);
-            g.setFont(new Font("Matt Carr", Font.BOLD, 22));
-            g.drawString("impactH: " + Math.round(impactH) + ", distance "
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Matt Carr", Font.BOLD, 22));
+            g2.drawString("impactH: " + Math.round(impactH) + ", distance "
                     + Math.round(distance) + ", Target type: " 
                     + (isHighGoal?"High":"Middle"), 15, (int)(imageH-20));
             
@@ -245,7 +251,7 @@ public class VisionProccesing {
 //            currentSpeed = (float) visionTable.getNumber("currentSpeed");
   
             currentAngle = 20;
-            currentSpeed = 3500;
+            currentSpeed = 3400;
             
         }
         catch(Exception e)
