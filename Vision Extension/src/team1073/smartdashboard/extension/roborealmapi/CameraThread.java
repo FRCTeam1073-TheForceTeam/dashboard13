@@ -7,6 +7,7 @@ package team1073.smartdashboard.extension.roborealmapi;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.SwingWorker;
 
@@ -89,6 +90,10 @@ public double getTargetRatio()
     protected BufferedImage doInBackground() throws Exception {
        
         BufferedImage image;
+        Date d = new Date();
+        String folderName = (d.getMonth()+1) + "_" + d.getDay() +"_"+ (d.getHours()%12) + "_" + d.getMinutes();
+        File folder = new File("C:/"+folderName);
+        folder.mkdir();
         
         while(! isCancelled())
         {   
@@ -101,11 +106,11 @@ public double getTargetRatio()
             System.out.println("Image Count:" + imageCount);
             setProgress(imageCount % 99);
             
-//            if (imageCount % 10 == 0)
-//            {
-//                String filename = String.format("C:/images/test %5d.bmp", imageCount);
-//                ImageIO.write(image, "bmp", new File(filename));
-//            }
+            if (imageCount % 10 == 0)
+            {
+                String filename = String.format("C:/%s/test %5d.bmp", folderName, imageCount);
+                ImageIO.write(image, "bmp", new File(filename));
+            }
             // Change FPS here:
             Thread.sleep(200);
         }
