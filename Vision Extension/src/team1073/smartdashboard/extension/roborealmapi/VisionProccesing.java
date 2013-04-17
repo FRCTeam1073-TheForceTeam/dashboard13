@@ -37,16 +37,16 @@ public class VisionProccesing {
     final int imageW = 640;
     
     //robot or situation dependent variables
-    final double cameraHeight = 15;//19.75;
-    final double elevation = 0;//34.5;
+    final double cameraHeight = 19.75;//20.5;//15;//19.75;
+    final double elevation = 34.5;//0;//34.5;
     double deltaH = cameraHeight + elevation; // changes depending on target
-    final double cameraAngle = 14.2;//17.9;
+    final double cameraAngle = 14.2;//19.82;//14.2;//17.9;
     final double HIGH_DELTA_H = 101 - deltaH;
     final double MIDDLE_DELTA_H = 84 - deltaH;
-    final double TARGET_WIDTH = 54;
+    final double TARGET_WIDTH = 62;
     
     //final double deltaH = deltaH0-34; // used for stairs (or, like, a robot. but really when is that gonna happen. i mean do you honestly think we're gonna be able to shoot discs at a target that is like seven feet up in the air? no, i didn't think so either. but i guess mechanical does.... idk sucks to be them), delete otherwise
-    final double cameraOffset =27;// 0;
+    final double cameraOffset =0;//27;// 0;
     double targetCenter = 103.25;
     final double midTargetCenter = 103.25;
     final double highTargetCenter = 111;
@@ -108,6 +108,7 @@ public class VisionProccesing {
         distance = getDistance(underneathHX, underneathHY);
         rightDistance = getDistance(rightUnderneathHX, rightUnderneathHY);
         double xOffset = (rightDistance*rightDistance - distance*distance - (TARGET_WIDTH*TARGET_WIDTH/4)) /(TARGET_WIDTH);
+        //double xOffset = (rightDistance*rightDistance - distance*distance - (TARGET_WIDTH*TARGET_WIDTH)) /(2*TARGET_WIDTH);
         double yOffset = Math.sqrt(distance*distance - xOffset*xOffset);
         double angleOffset = Math.atan((underneathHX - (imageW/2))/Math.sqrt(k)) * 180 / Math.PI;
         double reticleOffset = Math.tan(angleOffset * Math.PI / 180) * yOffset;
